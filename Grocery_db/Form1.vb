@@ -2,15 +2,9 @@
 Imports System.Data.OleDb
 
 Public Class Form1
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
-    End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub btn_createaccount_Click(sender As Object, e As EventArgs) Handles btn_createaccount.Click
+    Private Sub Btn_createaccount_Click(sender As Object, e As EventArgs) Handles BtnCreateAccount.Click
         AddHandler Form2.FormClosed, AddressOf Form2_FormClosed
         Form2.Show()
         Me.Hide()
@@ -21,7 +15,9 @@ Public Class Form1
         RemoveHandler Form2.FormClosed, AddressOf Form2_FormClosed
     End Sub
 
-    Private Sub btn_login_Click(sender As Object, e As EventArgs) Handles btn_login.Click
+    Private Sub Btn_login_Click(sender As Object, e As EventArgs) Handles Btn_login.Click
+
+
         Dim MSG As String = ""
         Dim isALLOK As Boolean = True
 
@@ -36,22 +32,26 @@ Public Class Form1
 
         If isALLOK Then
             Try
-                ' Use OleDbCommand for parameterized query
-                Using conn As New OleDbConnection(Module1.ConnectionString)
+                ' Define the connection string directly here
+                Dim connString As String = "Provider=SQLOLEDB.1;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes"
+
+                Using conn As New OleDbConnection(connString)
                     conn.Open()
-                    Dim query As String = "SELECT fullname FROM users WHERE username = ? AND password = ?"
+
+                    Dim query As String = "SELECT COUNT(*) FROM Admins WHERE Username = ? AND Password = ?"
                     Using cmd As New OleDbCommand(query, conn)
                         cmd.Parameters.AddWithValue("?", Trim(TextBox1.Text))
                         cmd.Parameters.AddWithValue("?", Trim(TextBox2.Text))
-                        Using reader As OleDbDataReader = cmd.ExecuteReader()
-                            If reader.Read() Then
-                                MsgBox("Welcome " & reader("fullname").ToString())
-                                MainForm.Show()
-                                Me.Hide()
-                            Else
-                                MsgBox("Invalid Credentials")
-                            End If
-                        End Using
+
+                        Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+
+                        If count > 0 Then
+                            MsgBox("Login successful!")
+                            Form3.Show()
+                            Me.Hide()
+                        Else
+                            MsgBox("Invalid credentials")
+                        End If
                     End Using
                 End Using
             Catch ex As Exception

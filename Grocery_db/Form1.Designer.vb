@@ -23,11 +23,11 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         TextBox1 = New TextBox()
-        btn_login = New Button()
+        Btn_login = New Button()
         Label1 = New Label()
         Label2 = New Label()
         TextBox2 = New TextBox()
-        btn_createaccount = New Button()
+        BtnCreateAccount = New Button()
         Label3 = New Label()
         Label4 = New Label()
         SuspendLayout()
@@ -39,18 +39,18 @@ Partial Class Form1
         TextBox1.Size = New Size(254, 23)
         TextBox1.TabIndex = 0
         ' 
-        ' btn_login
+        ' Btn_login
         ' 
-        btn_login.BackColor = Color.DarkOliveGreen
-        btn_login.FlatStyle = FlatStyle.Popup
-        btn_login.Font = New Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        btn_login.ForeColor = Color.White
-        btn_login.Location = New Point(86, 256)
-        btn_login.Name = "btn_login"
-        btn_login.Size = New Size(254, 55)
-        btn_login.TabIndex = 1
-        btn_login.Text = "Login"
-        btn_login.UseVisualStyleBackColor = False
+        Btn_login.BackColor = Color.DarkOliveGreen
+        Btn_login.FlatStyle = FlatStyle.Popup
+        Btn_login.Font = New Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Btn_login.ForeColor = Color.White
+        Btn_login.Location = New Point(86, 256)
+        Btn_login.Name = "Btn_login"
+        Btn_login.Size = New Size(254, 55)
+        Btn_login.TabIndex = 1
+        Btn_login.Text = "Login"
+        Btn_login.UseVisualStyleBackColor = False
         ' 
         ' Label1
         ' 
@@ -83,18 +83,18 @@ Partial Class Form1
         TextBox2.Size = New Size(254, 23)
         TextBox2.TabIndex = 3
         ' 
-        ' btn_createaccount
+        ' BtnCreateAccount
         ' 
-        btn_createaccount.BackColor = Color.Transparent
-        btn_createaccount.FlatStyle = FlatStyle.Flat
-        btn_createaccount.ForeColor = Color.Black
-        btn_createaccount.ImageAlign = ContentAlignment.TopLeft
-        btn_createaccount.Location = New Point(86, 332)
-        btn_createaccount.Name = "btn_createaccount"
-        btn_createaccount.Size = New Size(254, 38)
-        btn_createaccount.TabIndex = 5
-        btn_createaccount.Text = "Not yet registered? Create an account"
-        btn_createaccount.UseVisualStyleBackColor = False
+        BtnCreateAccount.BackColor = Color.Transparent
+        BtnCreateAccount.FlatStyle = FlatStyle.Flat
+        BtnCreateAccount.ForeColor = Color.Black
+        BtnCreateAccount.ImageAlign = ContentAlignment.TopLeft
+        BtnCreateAccount.Location = New Point(86, 332)
+        BtnCreateAccount.Name = "BtnCreateAccount"
+        BtnCreateAccount.Size = New Size(254, 38)
+        BtnCreateAccount.TabIndex = 5
+        BtnCreateAccount.Text = "Not yet registered? Create an account"
+        BtnCreateAccount.UseVisualStyleBackColor = False
         ' 
         ' Label3
         ' 
@@ -130,11 +130,11 @@ Partial Class Form1
         ClientSize = New Size(800, 450)
         Controls.Add(Label4)
         Controls.Add(Label3)
-        Controls.Add(btn_createaccount)
+        Controls.Add(BtnCreateAccount)
         Controls.Add(Label2)
         Controls.Add(TextBox2)
         Controls.Add(Label1)
-        Controls.Add(btn_login)
+        Controls.Add(Btn_login)
         Controls.Add(TextBox1)
         Name = "Form1"
         Text = "Login Form"
@@ -143,11 +143,11 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents btn_login As Button
+    Friend WithEvents Btn_login As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents btn_createaccount As Button
+    Friend WithEvents BtnCreateAccount As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
 
