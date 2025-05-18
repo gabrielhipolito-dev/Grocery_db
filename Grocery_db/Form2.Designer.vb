@@ -33,15 +33,16 @@ Partial Class Form2
         Label6 = New Label()
         dtp_birthday = New DateTimePicker()
         Label7 = New Label()
-        admin_button = New RadioButton()
+        RbAdmin = New RadioButton()
         tb_lastname = New TextBox()
         tb_email = New TextBox()
         Label5 = New Label()
+        RbUser = New RadioButton()
         SuspendLayout()
         ' 
         ' tb_firstname
         ' 
-        tb_firstname.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        tb_firstname.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         tb_firstname.Location = New Point(32, 130)
         tb_firstname.Name = "tb_firstname"
         tb_firstname.Size = New Size(147, 21)
@@ -51,7 +52,7 @@ Partial Class Form2
         ' 
         Label1.AutoSize = True
         Label1.BackColor = Color.Transparent
-        Label1.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label1.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.DimGray
         Label1.Location = New Point(196, 179)
         Label1.Name = "Label1"
@@ -76,7 +77,7 @@ Partial Class Form2
         ' 
         Label2.AutoSize = True
         Label2.BackColor = Color.Transparent
-        Label2.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label2.ForeColor = Color.DimGray
         Label2.Location = New Point(32, 114)
         Label2.Name = "Label2"
@@ -88,7 +89,7 @@ Partial Class Form2
         ' 
         Label3.AutoSize = True
         Label3.BackColor = Color.Transparent
-        Label3.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label3.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.DimGray
         Label3.Location = New Point(32, 251)
         Label3.Name = "Label3"
@@ -98,7 +99,7 @@ Partial Class Form2
         ' 
         ' tb_password
         ' 
-        tb_password.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        tb_password.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         tb_password.Location = New Point(32, 270)
         tb_password.Name = "tb_password"
         tb_password.Size = New Size(147, 21)
@@ -108,7 +109,7 @@ Partial Class Form2
         ' 
         Label4.AutoSize = True
         Label4.BackColor = Color.Transparent
-        Label4.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label4.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label4.ForeColor = Color.DimGray
         Label4.Location = New Point(196, 114)
         Label4.Name = "Label4"
@@ -118,7 +119,7 @@ Partial Class Form2
         ' 
         ' tb_username
         ' 
-        tb_username.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        tb_username.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         tb_username.Location = New Point(196, 196)
         tb_username.Name = "tb_username"
         tb_username.Size = New Size(147, 21)
@@ -128,7 +129,7 @@ Partial Class Form2
         ' 
         Label6.AutoSize = True
         Label6.BackColor = Color.Transparent
-        Label6.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label6.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label6.ForeColor = Color.DimGray
         Label6.Location = New Point(32, 179)
         Label6.Name = "Label6"
@@ -138,7 +139,7 @@ Partial Class Form2
         ' 
         ' dtp_birthday
         ' 
-        dtp_birthday.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        dtp_birthday.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         dtp_birthday.Format = DateTimePickerFormat.Short
         dtp_birthday.Location = New Point(196, 268)
         dtp_birthday.Name = "dtp_birthday"
@@ -149,7 +150,7 @@ Partial Class Form2
         ' 
         Label7.AutoSize = True
         Label7.BackColor = Color.Transparent
-        Label7.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label7.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label7.ForeColor = Color.DimGray
         Label7.Location = New Point(196, 251)
         Label7.Name = "Label7"
@@ -157,23 +158,23 @@ Partial Class Form2
         Label7.TabIndex = 16
         Label7.Text = "Date of Birth"
         ' 
-        ' admin_button
+        ' RbAdmin
         ' 
-        admin_button.AutoSize = True
-        admin_button.BackColor = Color.Transparent
-        admin_button.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        admin_button.ForeColor = Color.DimGray
-        admin_button.Location = New Point(32, 79)
-        admin_button.Name = "admin_button"
-        admin_button.Size = New Size(65, 19)
-        admin_button.TabIndex = 17
-        admin_button.TabStop = True
-        admin_button.Text = "Admin"
-        admin_button.UseVisualStyleBackColor = False
+        RbAdmin.AutoSize = True
+        RbAdmin.BackColor = Color.Transparent
+        RbAdmin.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        RbAdmin.ForeColor = Color.DimGray
+        RbAdmin.Location = New Point(32, 79)
+        RbAdmin.Name = "RbAdmin"
+        RbAdmin.Size = New Size(65, 19)
+        RbAdmin.TabIndex = 17
+        RbAdmin.TabStop = True
+        RbAdmin.Text = "Admin"
+        RbAdmin.UseVisualStyleBackColor = False
         ' 
         ' tb_lastname
         ' 
-        tb_lastname.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        tb_lastname.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         tb_lastname.Location = New Point(196, 130)
         tb_lastname.Name = "tb_lastname"
         tb_lastname.Size = New Size(147, 21)
@@ -181,7 +182,7 @@ Partial Class Form2
         ' 
         ' tb_email
         ' 
-        tb_email.Font = New Font("Georgia", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        tb_email.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         tb_email.Location = New Point(32, 196)
         tb_email.Name = "tb_email"
         tb_email.Size = New Size(147, 21)
@@ -191,7 +192,7 @@ Partial Class Form2
         ' 
         Label5.AutoSize = True
         Label5.BackColor = Color.Transparent
-        Label5.Font = New Font("Georgia", 24.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label5.Font = New Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label5.ForeColor = Color.DimGray
         Label5.Location = New Point(53, 27)
         Label5.Name = "Label5"
@@ -199,16 +200,28 @@ Partial Class Form2
         Label5.TabIndex = 21
         Label5.Text = "Registration Form"
         ' 
+        ' RbUser
+        ' 
+        RbUser.AutoSize = True
+        RbUser.Location = New Point(181, 79)
+        RbUser.Name = "RbUser"
+        RbUser.Size = New Size(48, 19)
+        RbUser.TabIndex = 22
+        RbUser.TabStop = True
+        RbUser.Text = "User"
+        RbUser.UseVisualStyleBackColor = True
+        ' 
         ' Form2
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(800, 450)
+        Controls.Add(RbUser)
         Controls.Add(Label5)
         Controls.Add(tb_email)
         Controls.Add(tb_lastname)
-        Controls.Add(admin_button)
+        Controls.Add(RbAdmin)
         Controls.Add(Label7)
         Controls.Add(dtp_birthday)
         Controls.Add(Label6)
@@ -237,8 +250,9 @@ Partial Class Form2
     Friend WithEvents Label6 As Label
     Friend WithEvents dtp_birthday As DateTimePicker
     Friend WithEvents Label7 As Label
-    Friend WithEvents admin_button As RadioButton
+    Friend WithEvents RbAdmin As RadioButton
     Friend WithEvents tb_lastname As TextBox
     Friend WithEvents tb_email As TextBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents RbUser As RadioButton
 End Class

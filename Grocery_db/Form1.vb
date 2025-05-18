@@ -1,8 +1,6 @@
-﻿
-Imports System.Data.OleDb
+﻿Imports System.Data.OleDb
 
 Public Class Form1
-
 
     Private Sub Btn_createaccount_Click(sender As Object, e As EventArgs) Handles BtnCreateAccount.Click
         AddHandler Form2.FormClosed, AddressOf Form2_FormClosed
@@ -16,8 +14,6 @@ Public Class Form1
     End Sub
 
     Private Sub Btn_login_Click(sender As Object, e As EventArgs) Handles Btn_login.Click
-
-
         Dim MSG As String = ""
         Dim isALLOK As Boolean = True
 
@@ -32,26 +28,36 @@ Public Class Form1
 
         If isALLOK Then
             Try
-                ' Define the connection string directly here
                 Dim connString As String = "Provider=SQLOLEDB.1;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes"
 
                 Using conn As New OleDbConnection(connString)
                     conn.Open()
 
-                    Dim query As String = "SELECT COUNT(*) FROM Admins WHERE Username = ? AND Password = ?"
+                    ' Step 1: Verify credentials and get role
+                    Dim query As String = "SELECT AccountID, Role FROM Accounts WHERE Username = ? AND Password = ?"
                     Using cmd As New OleDbCommand(query, conn)
                         cmd.Parameters.AddWithValue("?", Trim(TextBox1.Text))
                         cmd.Parameters.AddWithValue("?", Trim(TextBox2.Text))
 
-                        Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                        Using reader = cmd.ExecuteReader()
+                            If reader.Read() Then
+                                Dim accountId As Integer = reader.GetInt32(0)
+                                Dim role As String = reader.GetString(1)
 
-                        If count > 0 Then
-                            MsgBox("Login successful!")
-                            Form3.Show()
-                            Me.Hide()
-                        Else
-                            MsgBox("Invalid credentials")
-                        End If
+                                If role = "Admin" Then
+                                    MsgBox("Welcome, Admin!")
+                                    Form3.Show()
+                                ElseIf role = "User" Then
+                                    MsgBox("Welcome, User!")
+                                    form4.Show()
+                                Else
+                                    MsgBox("Unknown role.")
+                                End If
+                                Me.Hide()
+                            Else
+                                MsgBox("Invalid credentials.")
+                            End If
+                        End Using
                     End Using
                 End Using
             Catch ex As Exception
@@ -60,8 +66,6 @@ Public Class Form1
         Else
             MsgBox(MSG)
         End If
-
-
-
     End Sub
+
 End Class
