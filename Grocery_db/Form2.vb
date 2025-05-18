@@ -5,6 +5,8 @@
     End Sub
     Private Sub Btn_create_Click(sender As Object, e As EventArgs) Handles Btn_create.Click
         ' Validation
+
+        ' Validation
         Dim allTextFilled As Boolean = Not String.IsNullOrWhiteSpace(tb_username.Text) AndAlso
                                        Not String.IsNullOrWhiteSpace(tb_firstname.Text) AndAlso
                                        Not String.IsNullOrWhiteSpace(tb_lastname.Text)
@@ -44,26 +46,47 @@
             Return
         End If
 
-        ' INSERT INTO DATABASE
+        ' Connection and Check for existing user/email
         Try
             Dim connString As String = "Provider=SQLOLEDB.1;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes"
 
             Using conn As New OleDb.OleDbConnection(connString)
                 conn.Open()
 
-                Dim query As String = "INSERT INTO Admins (Username, Email, FirstName, LastName, Password, DateOfBirth) " &
-                                      "VALUES (?, ?, ?, ?, ?, ?)"
+                ' Check if username or email exists
+                Dim checkQuery As String = "SELECT Username, Email FROM Admins WHERE Username = ? OR Email = ?"
+                Using checkCmd As New OleDb.OleDbCommand(checkQuery, conn)
+                    checkCmd.Parameters.AddWithValue("?", tb_username.Text.Trim())
+                    checkCmd.Parameters.AddWithValue("?", tb_email.Text.Trim())
 
-                Using cmd As New OleDb.OleDbCommand(query, conn)
-                    cmd.Parameters.AddWithValue("?", tb_username.Text.Trim())
-                    cmd.Parameters.AddWithValue("?", tb_email.Text.Trim())
-                    cmd.Parameters.AddWithValue("?", tb_firstname.Text.Trim())
-                    cmd.Parameters.AddWithValue("?", tb_lastname.Text.Trim())
-                    cmd.Parameters.AddWithValue("?", tb_password.Text.Trim()) ' consider hashing!
-                    cmd.Parameters.AddWithValue("?", birthday)
+                    Using reader As OleDb.OleDbDataReader = checkCmd.ExecuteReader()
+                        If reader.Read() Then
+                            Dim existingUsername As String = reader("Username").ToString()
+                            Dim existingEmail As String = reader("Email").ToString()
 
-                    Dim rowsInserted As Integer = cmd.ExecuteNonQuery()
+                            If existingUsername = tb_username.Text.Trim() Then
+                                MessageBox.Show("Username is already taken.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            ElseIf existingEmail = tb_email.Text.Trim() Then
+                                MessageBox.Show("Email is already registered.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            End If
+                            Return
+                        End If
+                    End Using
+                End Using
 
+                ' Insert if no duplicates found
+                Dim insertQuery As String = "INSERT INTO Admins (Username, Email, FirstName, LastName, Password, DateOfBirth) " &
+                                            "VALUES (?, ?, ?, ?, ?, ?)"
+
+                Using insertCmd As New OleDb.OleDbCommand(insertQuery, conn)
+                    insertCmd.Parameters.AddWithValue("?", tb_username.Text.Trim())
+                    insertCmd.Parameters.AddWithValue("?", tb_email.Text.Trim())
+                    insertCmd.Parameters.AddWithValue("?", tb_firstname.Text.Trim())
+                    insertCmd.Parameters.AddWithValue("?", tb_lastname.Text.Trim())
+                    insertCmd.Parameters.AddWithValue("?", tb_password.Text.Trim()) ' Consider hashing
+                    insertCmd.Parameters.AddWithValue("?", birthday)
+
+                    Dim rowsInserted As Integer = insertCmd.ExecuteNonQuery()
                     If rowsInserted > 0 Then
                         MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
@@ -75,5 +98,6 @@
             MessageBox.Show("Database Error: " & ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
 End Class
