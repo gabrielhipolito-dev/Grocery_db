@@ -82,7 +82,7 @@ Partial Class Form3
         ' prodgroup_txt
         ' 
         prodgroup_txt.FormattingEnabled = True
-        prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks"})
+        prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks", "Cannes Goods", "Cleaning Materials"})
         prodgroup_txt.Location = New Point(93, 272)
         prodgroup_txt.Name = "prodgroup_txt"
         prodgroup_txt.Size = New Size(174, 23)
