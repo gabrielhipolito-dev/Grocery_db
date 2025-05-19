@@ -131,21 +131,33 @@ Public Class Form3
 
     Private Sub Delete_button_Click(sender As Object, e As EventArgs) Handles Delete_button.Click
         Try
-            Dim STRSQL As String = "DELETE FROM Products WHERE product_number = ?"
-            Dim cmd As New Command
-            cmd.ActiveConnection = CNN
-            cmd.CommandText = STRSQL
-            cmd.CommandType = CommandTypeEnum.adCmdText
-            cmd.Parameters.Append(cmd.CreateParameter("product_number", DataTypeEnum.adInteger, ParameterDirectionEnum.adParamInput, , Integer.Parse(prodno_txt.Text)))
+            Dim productNumber As Integer
+            If Not Integer.TryParse(prodno_txt.Text, productNumber) Then
+                MessageBox.Show("Please enter a valid product number.")
+                Return
+            End If
 
-            cmd.Execute()
-            MessageBox.Show("Product deleted.")
-            LoadProducts()
-            ClearFields()
+            Dim confirmResult = MessageBox.Show("Are you sure you want to delete this product?", "Confirm Delete", MessageBoxButtons.YesNo)
+            If confirmResult = DialogResult.Yes Then
+                Dim STRSQL As String = "DELETE FROM Products WHERE product_number = ?"
+                Dim cmd As New ADODB.Command
+                cmd.ActiveConnection = CNN
+                cmd.CommandText = STRSQL
+                cmd.CommandType = ADODB.CommandTypeEnum.adCmdText
+
+                cmd.Parameters.Append(cmd.CreateParameter("product_number", ADODB.DataTypeEnum.adInteger, ADODB.ParameterDirectionEnum.adParamInput, , productNumber))
+
+                cmd.Execute()
+                MessageBox.Show("Product deleted.")
+                LoadProducts()
+                ClearFields()
+            End If
         Catch ex As Exception
             MessageBox.Show("Delete failed: " & ex.Message)
         End Try
     End Sub
+
+
 
     Private Sub LoadProducts()
         Try
