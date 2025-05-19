@@ -49,79 +49,82 @@ Partial Class Form4
         ' txt_prodno
         ' 
         txt_prodno.BackColor = Color.Ivory
-        txt_prodno.Location = New Point(95, 98)
-        txt_prodno.Margin = New Padding(3, 4, 3, 4)
+        txt_prodno.Location = New Point(66, 59)
+        txt_prodno.Margin = New Padding(2, 2, 2, 2)
         txt_prodno.Name = "txt_prodno"
-        txt_prodno.Size = New Size(351, 31)
+        txt_prodno.Size = New Size(247, 23)
         txt_prodno.TabIndex = 0
         ' 
         ' txt_prodname
         ' 
         txt_prodname.BackColor = Color.Ivory
-        txt_prodname.Location = New Point(95, 171)
-        txt_prodname.Margin = New Padding(3, 4, 3, 4)
+        txt_prodname.Location = New Point(66, 103)
+        txt_prodname.Margin = New Padding(2, 2, 2, 2)
         txt_prodname.Name = "txt_prodname"
-        txt_prodname.Size = New Size(351, 31)
+        txt_prodname.Size = New Size(247, 23)
         txt_prodname.TabIndex = 1
         ' 
         ' txt_price
         ' 
         txt_price.BackColor = Color.Ivory
-        txt_price.Location = New Point(95, 250)
-        txt_price.Margin = New Padding(3, 4, 3, 4)
+        txt_price.Location = New Point(66, 150)
+        txt_price.Margin = New Padding(2, 2, 2, 2)
         txt_price.Name = "txt_price"
-        txt_price.Size = New Size(351, 31)
+        txt_price.Size = New Size(247, 23)
         txt_price.TabIndex = 2
         ' 
         ' combo_prodgroup
         ' 
         combo_prodgroup.BackColor = Color.Ivory
         combo_prodgroup.FormattingEnabled = True
-        combo_prodgroup.Location = New Point(95, 333)
-        combo_prodgroup.Margin = New Padding(3, 4, 3, 4)
+        combo_prodgroup.Location = New Point(66, 200)
+        combo_prodgroup.Margin = New Padding(2, 2, 2, 2)
         combo_prodgroup.Name = "combo_prodgroup"
-        combo_prodgroup.Size = New Size(351, 33)
+        combo_prodgroup.Size = New Size(247, 23)
         combo_prodgroup.TabIndex = 3
         ' 
         ' datetimepk
         ' 
-        datetimepk.CalendarFont = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        datetimepk.CalendarFont = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         datetimepk.CalendarTitleBackColor = Color.Ivory
         datetimepk.Cursor = Cursors.Hand
-        datetimepk.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        datetimepk.Location = New Point(95, 411)
-        datetimepk.Margin = New Padding(3, 4, 3, 4)
+        datetimepk.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        datetimepk.Location = New Point(66, 247)
+        datetimepk.Margin = New Padding(2, 2, 2, 2)
         datetimepk.Name = "datetimepk"
-        datetimepk.Size = New Size(351, 28)
+        datetimepk.Size = New Size(247, 21)
         datetimepk.TabIndex = 4
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(95, 70)
+        Label1.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(66, 42)
+        Label1.Margin = New Padding(2, 0, 2, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(116, 21)
+        Label1.Size = New Size(76, 14)
         Label1.TabIndex = 5
         Label1.Text = "Product No."
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(95, 144)
+        Label2.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(66, 86)
+        Label2.Margin = New Padding(2, 0, 2, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(137, 21)
+        Label2.Size = New Size(90, 14)
         Label2.TabIndex = 6
         Label2.Text = "Product Name"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(95, 221)
+        Label3.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(66, 133)
+        Label3.Margin = New Padding(2, 0, 2, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(57, 21)
+        Label3.Size = New Size(37, 14)
         Label3.TabIndex = 7
         Label3.Text = "Price"
         ' 
@@ -129,20 +132,22 @@ Partial Class Form4
         ' 
         Label4.AutoSize = True
         Label4.BackColor = Color.DarkSeaGreen
-        Label4.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(95, 305)
+        Label4.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label4.Location = New Point(66, 183)
+        Label4.Margin = New Padding(2, 0, 2, 0)
         Label4.Name = "Label4"
-        Label4.Size = New Size(140, 21)
+        Label4.Size = New Size(93, 14)
         Label4.TabIndex = 8
         Label4.Text = "Product Group"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(95, 383)
+        Label5.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(66, 230)
+        Label5.Margin = New Padding(2, 0, 2, 0)
         Label5.Name = "Label5"
-        Label5.Size = New Size(112, 21)
+        Label5.Size = New Size(74, 14)
         Label5.TabIndex = 9
         Label5.Text = "Expire Date"
         ' 
@@ -150,11 +155,11 @@ Partial Class Form4
         ' 
         check_avail.AutoSize = True
         check_avail.BackColor = Color.Ivory
-        check_avail.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        check_avail.Location = New Point(95, 476)
-        check_avail.Margin = New Padding(3, 4, 3, 4)
+        check_avail.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        check_avail.Location = New Point(66, 286)
+        check_avail.Margin = New Padding(2, 2, 2, 2)
         check_avail.Name = "check_avail"
-        check_avail.Size = New Size(118, 25)
+        check_avail.Size = New Size(80, 18)
         check_avail.TabIndex = 10
         check_avail.Text = "Available"
         check_avail.UseVisualStyleBackColor = False
@@ -165,12 +170,12 @@ Partial Class Form4
         button_clear.FlatAppearance.BorderColor = Color.Red
         button_clear.FlatAppearance.BorderSize = 2
         button_clear.FlatStyle = FlatStyle.Flat
-        button_clear.Font = New Font("Arial Narrow", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        button_clear.Font = New Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         button_clear.ForeColor = Color.Red
-        button_clear.Location = New Point(314, 472)
-        button_clear.Margin = New Padding(3, 4, 3, 4)
+        button_clear.Location = New Point(160, 275)
+        button_clear.Margin = New Padding(2, 2, 2, 2)
         button_clear.Name = "button_clear"
-        button_clear.Size = New Size(132, 31)
+        button_clear.Size = New Size(110, 37)
         button_clear.TabIndex = 11
         button_clear.Text = "Clear"
         button_clear.UseVisualStyleBackColor = False
@@ -183,14 +188,14 @@ Partial Class Form4
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3, Column4, Column5, Column6})
         DataGridView1.GridColor = SystemColors.ActiveCaptionText
-        DataGridView1.Location = New Point(496, 171)
-        DataGridView1.Margin = New Padding(3, 4, 3, 4)
+        DataGridView1.Location = New Point(347, 103)
+        DataGridView1.Margin = New Padding(2, 2, 2, 2)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersVisible = False
         DataGridView1.RowHeadersWidth = 62
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.Size = New Size(783, 444)
+        DataGridView1.Size = New Size(548, 266)
         DataGridView1.TabIndex = 12
         ' 
         ' Column1
@@ -202,7 +207,7 @@ Partial Class Form4
         Column1.ReadOnly = True
         Column1.Resizable = DataGridViewTriState.True
         Column1.SortMode = DataGridViewColumnSortMode.Automatic
-        Column1.Width = 180
+        Column1.Width = 111
         ' 
         ' Column2
         ' 
@@ -219,7 +224,7 @@ Partial Class Form4
         Column3.MinimumWidth = 8
         Column3.Name = "Column3"
         Column3.ReadOnly = True
-        Column3.Width = 85
+        Column3.Width = 58
         ' 
         ' Column4
         ' 
@@ -228,7 +233,7 @@ Partial Class Form4
         Column4.MinimumWidth = 8
         Column4.Name = "Column4"
         Column4.ReadOnly = True
-        Column4.Width = 98
+        Column4.Width = 65
         ' 
         ' Column5
         ' 
@@ -237,7 +242,7 @@ Partial Class Form4
         Column5.MinimumWidth = 8
         Column5.Name = "Column5"
         Column5.ReadOnly = True
-        Column5.Width = 126
+        Column5.Width = 83
         ' 
         ' Column6
         ' 
@@ -246,33 +251,34 @@ Partial Class Form4
         Column6.MinimumWidth = 8
         Column6.Name = "Column6"
         Column6.ReadOnly = True
-        Column6.Width = 66
+        Column6.Width = 45
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Font = New Font("Arial Rounded MT Bold", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(496, 70)
+        Label6.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(347, 42)
+        Label6.Margin = New Padding(2, 0, 2, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(74, 21)
+        Label6.Size = New Size(48, 14)
         Label6.TabIndex = 14
         Label6.Text = "Search"
         ' 
         ' txt_searchbox
         ' 
         txt_searchbox.BackColor = Color.Ivory
-        txt_searchbox.Location = New Point(496, 98)
-        txt_searchbox.Margin = New Padding(3, 4, 3, 4)
+        txt_searchbox.Location = New Point(347, 59)
+        txt_searchbox.Margin = New Padding(2, 2, 2, 2)
         txt_searchbox.Name = "txt_searchbox"
-        txt_searchbox.Size = New Size(467, 31)
+        txt_searchbox.Size = New Size(328, 23)
         txt_searchbox.TabIndex = 13
         ' 
         ' Form4
         ' 
-        AutoScaleDimensions = New SizeF(10.0F, 25.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.DarkSeaGreen
-        ClientSize = New Size(1317, 665)
+        ClientSize = New Size(922, 399)
         Controls.Add(Label6)
         Controls.Add(txt_searchbox)
         Controls.Add(DataGridView1)
@@ -288,7 +294,7 @@ Partial Class Form4
         Controls.Add(txt_price)
         Controls.Add(txt_prodname)
         Controls.Add(txt_prodno)
-        Margin = New Padding(3, 4, 3, 4)
+        Margin = New Padding(2, 2, 2, 2)
         Name = "Form4"
         StartPosition = FormStartPosition.CenterScreen
         Text = "My View"

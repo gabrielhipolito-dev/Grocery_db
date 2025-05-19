@@ -28,7 +28,7 @@ Public Class Form1
 
         If isALLOK Then
             Try
-                Dim connString As String = "Provider=SQLOLEDB.1;Data Source=LAPTOP-1UNHP5RA;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes"
+                Dim connString As String = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;"
 
                 Using conn As New OleDbConnection(connString)
                     conn.Open()
