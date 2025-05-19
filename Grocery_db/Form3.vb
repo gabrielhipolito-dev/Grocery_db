@@ -36,10 +36,10 @@ Public Class Form3
         Dim expiryDate As Date = expdate_txt.Value.Date
         If expiryDate < Date.Today Then
             MessageBox.Show("Warning: The expiry date entered is already expired!", "Expiry Date Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub ' Stop saving expired product
+            Exit Sub
         End If
 
-        Dim statusVal As String = If(quantityval = 0, "Unavailable", If(status_checkbox.Checked, "Available", "Unavailable"))
+        Dim statusVal As String = If(quantityval > 0, "Available", "Unavailable")
 
         Try
             Dim STRSQL As String = "INSERT INTO Products (product_number, product_name, price, group_name, expiry_date, status, quantity) VALUES (?, ?, ?, ?, ?, ?, ?)"
@@ -93,10 +93,10 @@ Public Class Form3
         Dim expiryDate As Date = expdate_txt.Value.Date
         If expiryDate < Date.Today Then
             MessageBox.Show("Warning: The expiry date entered is already expired!", "Expiry Date Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub ' Stop updating expired product
+            Exit Sub
         End If
 
-        Dim statusVal As String = If(quantityval = 0, "Unavailable", If(status_checkbox.Checked, "Available", "Unavailable"))
+        Dim statusVal As String = If(quantityval > 0, "Available", "Unavailable")
 
         Try
             Dim STRSQL As String = "UPDATE Products SET product_name = ?, price = ?, group_name = ?, expiry_date = ?, status = ?, quantity = ? WHERE product_number = ?"
@@ -129,8 +129,6 @@ Public Class Form3
         End Try
     End Sub
 
-
-
     Private Sub Delete_button_Click(sender As Object, e As EventArgs) Handles Delete_button.Click
         Try
             Dim STRSQL As String = "DELETE FROM Products WHERE product_number = ?"
@@ -150,7 +148,6 @@ Public Class Form3
     End Sub
 
     Private Sub LoadProducts()
-        ' Delete expired products first
         Try
             Dim deleteExpired As New Command
             deleteExpired.ActiveConnection = CNN
@@ -162,7 +159,6 @@ Public Class Form3
             Exit Sub
         End Try
 
-        ' Load remaining products
         Dim RST As New Recordset
         Dim STRSQL As String = "SELECT product_number, product_name, price, group_name, expiry_date, status, quantity FROM Products"
 
@@ -210,7 +206,6 @@ Public Class Form3
         price_txt.Clear()
         quantity_txt.Clear()
         expdate_txt.Value = Date.Today()
-        status_checkbox.Checked = False
     End Sub
 
     Private Sub Btn_load_Click(sender As Object, e As EventArgs)
@@ -221,7 +216,7 @@ Public Class Form3
         Dim searchText As String = txt_searchbox.Text.Trim()
 
         If String.IsNullOrEmpty(searchText) Then
-            LoadProducts() ' If empty, load all
+            LoadProducts()
             Return
         End If
 
@@ -241,7 +236,6 @@ Public Class Form3
             cmd.CommandText = STRSQL
             cmd.CommandType = CommandTypeEnum.adCmdText
 
-            ' Using wildcard search for all text fields
             Dim paramValue As String = "%" & searchText & "%"
             cmd.Parameters.Append(cmd.CreateParameter("param1", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
             cmd.Parameters.Append(cmd.CreateParameter("param2", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, paramValue))
@@ -280,7 +274,4 @@ Public Class Form3
             MessageBox.Show("Search failed: " & ex.Message)
         End Try
     End Sub
-
-
-
 End Class

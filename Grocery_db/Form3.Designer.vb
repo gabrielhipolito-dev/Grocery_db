@@ -28,7 +28,6 @@ Partial Class Form3
         price_txt = New TextBox()
         prodgroup_txt = New ComboBox()
         expdate_txt = New DateTimePicker()
-        status_checkbox = New CheckBox()
         Save_button = New Button()
         Update_button = New Button()
         Delete_button = New Button()
@@ -94,16 +93,6 @@ Partial Class Form3
         expdate_txt.Name = "expdate_txt"
         expdate_txt.Size = New Size(250, 21)
         expdate_txt.TabIndex = 5
-        ' 
-        ' status_checkbox
-        ' 
-        status_checkbox.AutoSize = True
-        status_checkbox.Location = New Point(86, 429)
-        status_checkbox.Name = "status_checkbox"
-        status_checkbox.Size = New Size(82, 19)
-        status_checkbox.TabIndex = 6
-        status_checkbox.Text = "Available"
-        status_checkbox.UseVisualStyleBackColor = True
         ' 
         ' Save_button
         ' 
@@ -260,7 +249,6 @@ Partial Class Form3
         Controls.Add(Delete_button)
         Controls.Add(Update_button)
         Controls.Add(Save_button)
-        Controls.Add(status_checkbox)
         Controls.Add(expdate_txt)
         Controls.Add(prodgroup_txt)
         Controls.Add(price_txt)
@@ -282,7 +270,6 @@ Partial Class Form3
     Friend WithEvents price_txt As TextBox
     Friend WithEvents prodgroup_txt As ComboBox
     Friend WithEvents expdate_txt As DateTimePicker
-    Friend WithEvents status_checkbox As CheckBox
     Friend WithEvents Save_button As Button
     Friend WithEvents Update_button As Button
     Friend WithEvents Delete_button As Button
