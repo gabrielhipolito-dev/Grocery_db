@@ -27,8 +27,22 @@ Public Class Form3
             Exit Sub
         End If
 
+        Dim quantityval As Integer
+        If Not Integer.TryParse(quantity_txt.Text, quantityval) OrElse quantityval < 0 Then
+            MessageBox.Show("Quantity must be a non-negative whole number.")
+            Exit Sub
+        End If
+
+        Dim expiryDate As Date = expdate_txt.Value.Date
+        If expiryDate < Date.Today Then
+            MessageBox.Show("Warning: The expiry date entered is already expired!", "Expiry Date Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub ' Stop saving expired product
+        End If
+
+        Dim statusVal As String = If(quantityval = 0, "Unavailable", If(status_checkbox.Checked, "Available", "Unavailable"))
+
         Try
-            Dim STRSQL As String = "INSERT INTO Products (product_number, product_name, price, group_name, expiry_date, status) VALUES (?, ?, ?, ?, ?, ?)"
+            Dim STRSQL As String = "INSERT INTO Products (product_number, product_name, price, group_name, expiry_date, status, quantity) VALUES (?, ?, ?, ?, ?, ?, ?)"
 
             Dim cmd As New Command
             cmd.ActiveConnection = CNN
@@ -39,8 +53,9 @@ Public Class Form3
             cmd.Parameters.Append(cmd.CreateParameter("product_name", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, prodname_txt.Text.Trim()))
             cmd.Parameters.Append(cmd.CreateParameter("price", DataTypeEnum.adCurrency, ParameterDirectionEnum.adParamInput, , priceval))
             cmd.Parameters.Append(cmd.CreateParameter("group_name", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, prodgroup_txt.Text.Trim()))
-            cmd.Parameters.Append(cmd.CreateParameter("expiry_date", DataTypeEnum.adDate, ParameterDirectionEnum.adParamInput, , expdate_txt.Value))
-            cmd.Parameters.Append(cmd.CreateParameter("status", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 20, If(status_checkbox.Checked, "Available", "Unavailable")))
+            cmd.Parameters.Append(cmd.CreateParameter("expiry_date", DataTypeEnum.adDate, ParameterDirectionEnum.adParamInput, , expiryDate))
+            cmd.Parameters.Append(cmd.CreateParameter("status", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 20, statusVal))
+            cmd.Parameters.Append(cmd.CreateParameter("quantity", DataTypeEnum.adInteger, ParameterDirectionEnum.adParamInput, , quantityval))
 
             cmd.Execute()
             MessageBox.Show("Product saved!")
@@ -64,13 +79,27 @@ Public Class Form3
             Exit Sub
         End If
 
+        Dim quantityval As Integer
+        If Not Integer.TryParse(quantity_txt.Text, quantityval) OrElse quantityval < 0 Then
+            MessageBox.Show("Quantity must be a non-negative whole number.")
+            Exit Sub
+        End If
+
         If String.IsNullOrWhiteSpace(prodname_txt.Text) Then
             MessageBox.Show("Product name cannot be empty.")
             Exit Sub
         End If
 
+        Dim expiryDate As Date = expdate_txt.Value.Date
+        If expiryDate < Date.Today Then
+            MessageBox.Show("Warning: The expiry date entered is already expired!", "Expiry Date Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub ' Stop updating expired product
+        End If
+
+        Dim statusVal As String = If(quantityval = 0, "Unavailable", If(status_checkbox.Checked, "Available", "Unavailable"))
+
         Try
-            Dim STRSQL As String = "UPDATE Products SET product_name = ?, price = ?, group_name = ?, expiry_date = ?, status = ? WHERE product_number = ?"
+            Dim STRSQL As String = "UPDATE Products SET product_name = ?, price = ?, group_name = ?, expiry_date = ?, status = ?, quantity = ? WHERE product_number = ?"
 
             Dim cmd As New Command
             cmd.ActiveConnection = CNN
@@ -80,8 +109,9 @@ Public Class Form3
             cmd.Parameters.Append(cmd.CreateParameter("product_name", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, prodname_txt.Text.Trim()))
             cmd.Parameters.Append(cmd.CreateParameter("price", DataTypeEnum.adCurrency, ParameterDirectionEnum.adParamInput, , priceval))
             cmd.Parameters.Append(cmd.CreateParameter("group_name", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, prodgroup_txt.Text.Trim()))
-            cmd.Parameters.Append(cmd.CreateParameter("expiry_date", DataTypeEnum.adDate, ParameterDirectionEnum.adParamInput, , expdate_txt.Value))
-            cmd.Parameters.Append(cmd.CreateParameter("status", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 20, If(status_checkbox.Checked, "Available", "Unavailable")))
+            cmd.Parameters.Append(cmd.CreateParameter("expiry_date", DataTypeEnum.adDate, ParameterDirectionEnum.adParamInput, , expiryDate))
+            cmd.Parameters.Append(cmd.CreateParameter("status", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 20, statusVal))
+            cmd.Parameters.Append(cmd.CreateParameter("quantity", DataTypeEnum.adInteger, ParameterDirectionEnum.adParamInput, , quantityval))
             cmd.Parameters.Append(cmd.CreateParameter("product_number", DataTypeEnum.adInteger, ParameterDirectionEnum.adParamInput, , prodno))
 
             Dim affected As Object = 0
@@ -98,6 +128,7 @@ Public Class Form3
             MessageBox.Show("Update failed: " & ex.Message)
         End Try
     End Sub
+
 
 
     Private Sub Delete_button_Click(sender As Object, e As EventArgs) Handles Delete_button.Click
@@ -119,8 +150,21 @@ Public Class Form3
     End Sub
 
     Private Sub LoadProducts()
+        ' Delete expired products first
+        Try
+            Dim deleteExpired As New Command
+            deleteExpired.ActiveConnection = CNN
+            deleteExpired.CommandText = "DELETE FROM Products WHERE expiry_date < GETDATE()"
+            deleteExpired.CommandType = CommandTypeEnum.adCmdText
+            deleteExpired.Execute()
+        Catch ex As Exception
+            MessageBox.Show("Error removing expired products: " & ex.Message)
+            Exit Sub
+        End Try
+
+        ' Load remaining products
         Dim RST As New Recordset
-        Dim STRSQL As String = "SELECT product_number, product_name, price, group_name, expiry_date, status FROM Products"
+        Dim STRSQL As String = "SELECT product_number, product_name, price, group_name, expiry_date, status, quantity FROM Products"
 
         Try
             If CNN.State = 0 Then CNN.Open()
@@ -133,6 +177,7 @@ Public Class Form3
             dt.Columns.Add("group_name")
             dt.Columns.Add("expiry_date", GetType(DateTime))
             dt.Columns.Add("status")
+            dt.Columns.Add("quantity", GetType(Integer))
 
             While Not RST.EOF
                 dt.Rows.Add(
@@ -141,7 +186,8 @@ Public Class Form3
                     RST.Fields("price").Value,
                     RST.Fields("group_name").Value,
                     RST.Fields("expiry_date").Value,
-                    RST.Fields("status").Value
+                    RST.Fields("status").Value,
+                    RST.Fields("quantity").Value
                 )
                 RST.MoveNext()
             End While
@@ -162,13 +208,79 @@ Public Class Form3
         prodno_txt.Clear()
         prodname_txt.Clear()
         price_txt.Clear()
+        quantity_txt.Clear()
         expdate_txt.Value = Date.Today()
         status_checkbox.Checked = False
     End Sub
 
-    Private Sub Btn_load_Click(sender As Object, e As EventArgs) Handles Btn_load.Click
+    Private Sub Btn_load_Click(sender As Object, e As EventArgs)
         LoadProducts()
     End Sub
+
+    Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+        Dim searchText As String = txt_searchbox.Text.Trim()
+
+        If String.IsNullOrEmpty(searchText) Then
+            LoadProducts() ' If empty, load all
+            Return
+        End If
+
+        Dim RST As New Recordset
+        Dim STRSQL As String = "SELECT product_number, product_name, price, group_name, expiry_date, status, quantity FROM Products WHERE " &
+                               "CAST(product_number AS NVARCHAR) LIKE ? OR " &
+                               "product_name LIKE ? OR " &
+                               "CAST(price AS NVARCHAR) LIKE ? OR " &
+                               "group_name LIKE ? OR " &
+                               "status LIKE ?"
+
+        Try
+            If CNN.State = 0 Then CNN.Open()
+
+            Dim cmd As New Command
+            cmd.ActiveConnection = CNN
+            cmd.CommandText = STRSQL
+            cmd.CommandType = CommandTypeEnum.adCmdText
+
+            ' Using wildcard search for all text fields
+            Dim paramValue As String = "%" & searchText & "%"
+            cmd.Parameters.Append(cmd.CreateParameter("param1", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
+            cmd.Parameters.Append(cmd.CreateParameter("param2", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, paramValue))
+            cmd.Parameters.Append(cmd.CreateParameter("param3", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
+            cmd.Parameters.Append(cmd.CreateParameter("param4", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, paramValue))
+            cmd.Parameters.Append(cmd.CreateParameter("param5", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 20, paramValue))
+
+            RST = cmd.Execute()
+
+            Dim dt As New DataTable
+            dt.Columns.Add("product_number")
+            dt.Columns.Add("product_name")
+            dt.Columns.Add("price", GetType(Decimal))
+            dt.Columns.Add("group_name")
+            dt.Columns.Add("expiry_date", GetType(DateTime))
+            dt.Columns.Add("status")
+            dt.Columns.Add("quantity", GetType(Integer))
+
+            While Not RST.EOF
+                dt.Rows.Add(
+                    RST.Fields("product_number").Value,
+                    RST.Fields("product_name").Value,
+                    RST.Fields("price").Value,
+                    RST.Fields("group_name").Value,
+                    RST.Fields("expiry_date").Value,
+                    RST.Fields("status").Value,
+                    RST.Fields("quantity").Value
+                )
+                RST.MoveNext()
+            End While
+
+            DataGridView1.DataSource = dt
+            DataGridView1.AutoResizeColumns()
+            RST.Close()
+        Catch ex As Exception
+            MessageBox.Show("Search failed: " & ex.Message)
+        End Try
+    End Sub
+
 
 
 End Class

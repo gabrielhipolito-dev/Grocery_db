@@ -39,10 +39,10 @@ Partial Class Form3
         Label5 = New Label()
         Label6 = New Label()
         DataGridView1 = New DataGridView()
-        Btn_load = New Button()
         txt_searchbox = New TextBox()
-        cb_category = New ComboBox()
         btn_search = New Button()
+        Label7 = New Label()
+        quantity_txt = New TextBox()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -98,7 +98,7 @@ Partial Class Form3
         ' status_checkbox
         ' 
         status_checkbox.AutoSize = True
-        status_checkbox.Location = New Point(93, 375)
+        status_checkbox.Location = New Point(86, 429)
         status_checkbox.Name = "status_checkbox"
         status_checkbox.Size = New Size(82, 19)
         status_checkbox.TabIndex = 6
@@ -109,7 +109,7 @@ Partial Class Form3
         ' 
         Save_button.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
         Save_button.FlatStyle = FlatStyle.Popup
-        Save_button.Location = New Point(93, 412)
+        Save_button.Location = New Point(89, 454)
         Save_button.Name = "Save_button"
         Save_button.Size = New Size(94, 29)
         Save_button.TabIndex = 7
@@ -121,7 +121,7 @@ Partial Class Form3
         Update_button.BackColor = Color.Gold
         Update_button.FlatStyle = FlatStyle.Popup
         Update_button.ForeColor = SystemColors.ActiveCaptionText
-        Update_button.Location = New Point(218, 412)
+        Update_button.Location = New Point(218, 454)
         Update_button.Name = "Update_button"
         Update_button.Size = New Size(94, 29)
         Update_button.TabIndex = 8
@@ -132,7 +132,7 @@ Partial Class Form3
         ' 
         Delete_button.BackColor = Color.Red
         Delete_button.FlatStyle = FlatStyle.Popup
-        Delete_button.Location = New Point(93, 464)
+        Delete_button.Location = New Point(89, 499)
         Delete_button.Name = "Delete_button"
         Delete_button.Size = New Size(94, 29)
         Delete_button.TabIndex = 9
@@ -143,7 +143,7 @@ Partial Class Form3
         ' 
         Clear_button.BackColor = SystemColors.ActiveBorder
         Clear_button.FlatStyle = FlatStyle.Popup
-        Clear_button.Location = New Point(218, 464)
+        Clear_button.Location = New Point(218, 499)
         Clear_button.Name = "Clear_button"
         Clear_button.Size = New Size(94, 29)
         Clear_button.TabIndex = 10
@@ -207,15 +207,6 @@ Partial Class Form3
         DataGridView1.Size = New Size(630, 396)
         DataGridView1.TabIndex = 18
         ' 
-        ' Btn_load
-        ' 
-        Btn_load.Location = New Point(166, 505)
-        Btn_load.Name = "Btn_load"
-        Btn_load.Size = New Size(75, 23)
-        Btn_load.TabIndex = 19
-        Btn_load.Text = "load"
-        Btn_load.UseVisualStyleBackColor = True
-        ' 
         ' txt_searchbox
         ' 
         txt_searchbox.BackColor = Color.Ivory
@@ -225,32 +216,40 @@ Partial Class Form3
         txt_searchbox.Size = New Size(630, 21)
         txt_searchbox.TabIndex = 20
         ' 
-        ' cb_category
-        ' 
-        cb_category.FormattingEnabled = True
-        cb_category.Location = New Point(369, 50)
-        cb_category.Name = "cb_category"
-        cb_category.Size = New Size(121, 23)
-        cb_category.TabIndex = 21
-        ' 
         ' btn_search
         ' 
-        btn_search.Location = New Point(924, 50)
+        btn_search.Location = New Point(369, 49)
         btn_search.Name = "btn_search"
         btn_search.Size = New Size(75, 23)
         btn_search.TabIndex = 22
-        btn_search.Text = "Button1"
+        btn_search.Text = "Search"
         btn_search.UseVisualStyleBackColor = True
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(93, 366)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(61, 15)
+        Label7.TabIndex = 23
+        Label7.Text = "Quantity"
+        ' 
+        ' quantity_txt
+        ' 
+        quantity_txt.Location = New Point(93, 384)
+        quantity_txt.Name = "quantity_txt"
+        quantity_txt.Size = New Size(219, 21)
+        quantity_txt.TabIndex = 24
         ' 
         ' Form3
         ' 
         AutoScaleDimensions = New SizeF(8F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1028, 540)
+        Controls.Add(quantity_txt)
+        Controls.Add(Label7)
         Controls.Add(btn_search)
-        Controls.Add(cb_category)
         Controls.Add(txt_searchbox)
-        Controls.Add(Btn_load)
         Controls.Add(DataGridView1)
         Controls.Add(Label6)
         Controls.Add(Label5)
@@ -294,8 +293,8 @@ Partial Class Form3
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Btn_load As Button
     Friend WithEvents txt_searchbox As TextBox
-    Friend WithEvents cb_category As ComboBox
     Friend WithEvents btn_search As Button
+    Friend WithEvents Label7 As Label
+    Friend WithEvents quantity_txt As TextBox
 End Class

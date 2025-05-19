@@ -33,8 +33,11 @@ Public Class Form1
                 Using conn As New OleDbConnection(connString)
                     conn.Open()
 
-                    ' Step 1: Verify credentials and get role
-                    Dim query As String = "SELECT AccountID, Role FROM Accounts WHERE Username = ? AND Password = ?"
+                    ' Case-sensitive query using COLLATE SQL_Latin1_General_CP1_CS_AS
+                    Dim query As String = "SELECT AccountID, Role FROM Accounts " &
+                                      "WHERE Username = ? COLLATE SQL_Latin1_General_CP1_CS_AS " &
+                                      "AND Password = ? COLLATE SQL_Latin1_General_CP1_CS_AS"
+
                     Using cmd As New OleDbCommand(query, conn)
                         cmd.Parameters.AddWithValue("?", Trim(TextBox1.Text))
                         cmd.Parameters.AddWithValue("?", Trim(TextBox2.Text))
@@ -49,7 +52,7 @@ Public Class Form1
                                     Form3.Show()
                                 ElseIf role = "User" Then
                                     MsgBox("Welcome, User!")
-                                    form4.Show()
+                                    Form4.Show()
                                 Else
                                     MsgBox("Unknown role.")
                                 End If
@@ -68,7 +71,4 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class
