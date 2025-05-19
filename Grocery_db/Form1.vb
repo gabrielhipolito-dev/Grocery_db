@@ -28,7 +28,7 @@ Public Class Form1
 
         If isALLOK Then
             Try
-                Dim connString As String = "Provider=SQLOLEDB.1;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes"
+                Dim connString As String = "Provider=SQLOLEDB.1;Data Source=LAPTOP-1UNHP5RA;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes"
 
                 Using conn As New OleDbConnection(connString)
                     conn.Open()
@@ -68,4 +68,7 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
