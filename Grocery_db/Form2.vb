@@ -40,7 +40,7 @@
         Dim role As String = If(RbAdmin.Checked, "Admin", "User")
 
         Try
-            Using conn As New OleDb.OleDbConnection("Provider=SQLOLEDB.1;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes")
+            Using conn As New OleDb.OleDbConnection("Provider=SQLOLEDB.1;Data Source=LAPTOP-1UNHP5RA;Initial Catalog=INVENTORY;Integrated Security=SSPI;Encrypt=yes;TrustServerCertificate=yes")
                 conn.Open()
 
                 ' Check if username or email already exists
