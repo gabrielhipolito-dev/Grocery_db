@@ -39,6 +39,10 @@ Partial Class Form3
         Label5 = New Label()
         Label6 = New Label()
         DataGridView1 = New DataGridView()
+        Btn_load = New Button()
+        txt_searchbox = New TextBox()
+        cb_category = New ComboBox()
+        btn_search = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -78,6 +82,7 @@ Partial Class Form3
         ' prodgroup_txt
         ' 
         prodgroup_txt.FormattingEnabled = True
+        prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks"})
         prodgroup_txt.Location = New Point(93, 272)
         prodgroup_txt.Name = "prodgroup_txt"
         prodgroup_txt.Size = New Size(174, 23)
@@ -202,11 +207,50 @@ Partial Class Form3
         DataGridView1.Size = New Size(630, 396)
         DataGridView1.TabIndex = 18
         ' 
+        ' Btn_load
+        ' 
+        Btn_load.Location = New Point(166, 505)
+        Btn_load.Name = "Btn_load"
+        Btn_load.Size = New Size(75, 23)
+        Btn_load.TabIndex = 19
+        Btn_load.Text = "load"
+        Btn_load.UseVisualStyleBackColor = True
+        ' 
+        ' txt_searchbox
+        ' 
+        txt_searchbox.BackColor = Color.Ivory
+        txt_searchbox.Location = New Point(369, 79)
+        txt_searchbox.Margin = New Padding(2)
+        txt_searchbox.Name = "txt_searchbox"
+        txt_searchbox.Size = New Size(630, 21)
+        txt_searchbox.TabIndex = 20
+        ' 
+        ' cb_category
+        ' 
+        cb_category.FormattingEnabled = True
+        cb_category.Location = New Point(369, 50)
+        cb_category.Name = "cb_category"
+        cb_category.Size = New Size(121, 23)
+        cb_category.TabIndex = 21
+        ' 
+        ' btn_search
+        ' 
+        btn_search.Location = New Point(924, 50)
+        btn_search.Name = "btn_search"
+        btn_search.Size = New Size(75, 23)
+        btn_search.TabIndex = 22
+        btn_search.Text = "Button1"
+        btn_search.UseVisualStyleBackColor = True
+        ' 
         ' Form3
         ' 
         AutoScaleDimensions = New SizeF(8F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1028, 540)
+        Controls.Add(btn_search)
+        Controls.Add(cb_category)
+        Controls.Add(txt_searchbox)
+        Controls.Add(Btn_load)
         Controls.Add(DataGridView1)
         Controls.Add(Label6)
         Controls.Add(Label5)
@@ -250,4 +294,8 @@ Partial Class Form3
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Btn_load As Button
+    Friend WithEvents txt_searchbox As TextBox
+    Friend WithEvents cb_category As ComboBox
+    Friend WithEvents btn_search As Button
 End Class

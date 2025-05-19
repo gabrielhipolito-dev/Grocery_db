@@ -32,7 +32,6 @@ Partial Class Form4
         Label3 = New Label()
         Label4 = New Label()
         Label5 = New Label()
-        check_avail = New CheckBox()
         button_clear = New Button()
         DataGridView1 = New DataGridView()
         Column1 = New DataGridViewCheckBoxColumn()
@@ -43,6 +42,7 @@ Partial Class Form4
         Column6 = New DataGridViewCheckBoxColumn()
         Label6 = New Label()
         txt_searchbox = New TextBox()
+        Btn_search = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -50,7 +50,7 @@ Partial Class Form4
         ' 
         txt_prodno.BackColor = Color.Ivory
         txt_prodno.Location = New Point(66, 59)
-        txt_prodno.Margin = New Padding(2, 2, 2, 2)
+        txt_prodno.Margin = New Padding(2)
         txt_prodno.Name = "txt_prodno"
         txt_prodno.Size = New Size(247, 23)
         txt_prodno.TabIndex = 0
@@ -59,7 +59,7 @@ Partial Class Form4
         ' 
         txt_prodname.BackColor = Color.Ivory
         txt_prodname.Location = New Point(66, 103)
-        txt_prodname.Margin = New Padding(2, 2, 2, 2)
+        txt_prodname.Margin = New Padding(2)
         txt_prodname.Name = "txt_prodname"
         txt_prodname.Size = New Size(247, 23)
         txt_prodname.TabIndex = 1
@@ -68,7 +68,7 @@ Partial Class Form4
         ' 
         txt_price.BackColor = Color.Ivory
         txt_price.Location = New Point(66, 150)
-        txt_price.Margin = New Padding(2, 2, 2, 2)
+        txt_price.Margin = New Padding(2)
         txt_price.Name = "txt_price"
         txt_price.Size = New Size(247, 23)
         txt_price.TabIndex = 2
@@ -78,7 +78,7 @@ Partial Class Form4
         combo_prodgroup.BackColor = Color.Ivory
         combo_prodgroup.FormattingEnabled = True
         combo_prodgroup.Location = New Point(66, 200)
-        combo_prodgroup.Margin = New Padding(2, 2, 2, 2)
+        combo_prodgroup.Margin = New Padding(2)
         combo_prodgroup.Name = "combo_prodgroup"
         combo_prodgroup.Size = New Size(247, 23)
         combo_prodgroup.TabIndex = 3
@@ -90,7 +90,7 @@ Partial Class Form4
         datetimepk.Cursor = Cursors.Hand
         datetimepk.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         datetimepk.Location = New Point(66, 247)
-        datetimepk.Margin = New Padding(2, 2, 2, 2)
+        datetimepk.Margin = New Padding(2)
         datetimepk.Name = "datetimepk"
         datetimepk.Size = New Size(247, 21)
         datetimepk.TabIndex = 4
@@ -151,19 +151,6 @@ Partial Class Form4
         Label5.TabIndex = 9
         Label5.Text = "Expire Date"
         ' 
-        ' check_avail
-        ' 
-        check_avail.AutoSize = True
-        check_avail.BackColor = Color.Ivory
-        check_avail.Font = New Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        check_avail.Location = New Point(66, 286)
-        check_avail.Margin = New Padding(2, 2, 2, 2)
-        check_avail.Name = "check_avail"
-        check_avail.Size = New Size(80, 18)
-        check_avail.TabIndex = 10
-        check_avail.Text = "Available"
-        check_avail.UseVisualStyleBackColor = False
-        ' 
         ' button_clear
         ' 
         button_clear.BackColor = SystemColors.Window
@@ -172,8 +159,8 @@ Partial Class Form4
         button_clear.FlatStyle = FlatStyle.Flat
         button_clear.Font = New Font("Arial Narrow", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         button_clear.ForeColor = Color.Red
-        button_clear.Location = New Point(160, 275)
-        button_clear.Margin = New Padding(2, 2, 2, 2)
+        button_clear.Location = New Point(203, 272)
+        button_clear.Margin = New Padding(2)
         button_clear.Name = "button_clear"
         button_clear.Size = New Size(110, 37)
         button_clear.TabIndex = 11
@@ -189,7 +176,7 @@ Partial Class Form4
         DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3, Column4, Column5, Column6})
         DataGridView1.GridColor = SystemColors.ActiveCaptionText
         DataGridView1.Location = New Point(347, 103)
-        DataGridView1.Margin = New Padding(2, 2, 2, 2)
+        DataGridView1.Margin = New Padding(2)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersVisible = False
@@ -268,10 +255,19 @@ Partial Class Form4
         ' 
         txt_searchbox.BackColor = Color.Ivory
         txt_searchbox.Location = New Point(347, 59)
-        txt_searchbox.Margin = New Padding(2, 2, 2, 2)
+        txt_searchbox.Margin = New Padding(2)
         txt_searchbox.Name = "txt_searchbox"
         txt_searchbox.Size = New Size(328, 23)
         txt_searchbox.TabIndex = 13
+        ' 
+        ' Btn_search
+        ' 
+        Btn_search.Location = New Point(66, 273)
+        Btn_search.Name = "Btn_search"
+        Btn_search.Size = New Size(75, 23)
+        Btn_search.TabIndex = 15
+        Btn_search.Text = "SEARCH"
+        Btn_search.UseVisualStyleBackColor = True
         ' 
         ' Form4
         ' 
@@ -279,11 +275,11 @@ Partial Class Form4
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.DarkSeaGreen
         ClientSize = New Size(922, 399)
+        Controls.Add(Btn_search)
         Controls.Add(Label6)
         Controls.Add(txt_searchbox)
         Controls.Add(DataGridView1)
         Controls.Add(button_clear)
-        Controls.Add(check_avail)
         Controls.Add(Label5)
         Controls.Add(Label4)
         Controls.Add(Label3)
@@ -294,7 +290,7 @@ Partial Class Form4
         Controls.Add(txt_price)
         Controls.Add(txt_prodname)
         Controls.Add(txt_prodno)
-        Margin = New Padding(2, 2, 2, 2)
+        Margin = New Padding(2)
         Name = "Form4"
         StartPosition = FormStartPosition.CenterScreen
         Text = "My View"
@@ -313,7 +309,6 @@ Partial Class Form4
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents check_avail As CheckBox
     Friend WithEvents button_clear As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Label6 As Label
@@ -324,4 +319,5 @@ Partial Class Form4
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewCheckBoxColumn
+    Friend WithEvents Btn_search As Button
 End Class

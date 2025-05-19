@@ -14,6 +14,8 @@
         Dim emailValid As Boolean = tb_email.Text.ToLower().EndsWith("@gmail.com")
         Dim hasSpecialChar As Boolean = tb_password.Text.Any(Function(c) Not Char.IsLetterOrDigit(c))
         Dim roleSelected As Boolean = RbAdmin.Checked OrElse RbUser.Checked
+
+        'logic date
         Dim birthday As Date = dtp_birthday.Value
         Dim age As Integer = Date.Today.Year - birthday.Year
         If birthday > Date.Today.AddYears(-age) Then age -= 1

@@ -166,4 +166,9 @@ Public Class Form3
         status_checkbox.Checked = False
     End Sub
 
+    Private Sub Btn_load_Click(sender As Object, e As EventArgs) Handles Btn_load.Click
+        LoadProducts()
+    End Sub
+
+
 End Class
