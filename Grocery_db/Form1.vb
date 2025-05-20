@@ -13,16 +13,6 @@ Public Class Form1
         RemoveHandler Form2.FormClosed, AddressOf Form2_FormClosed
     End Sub
 
-    Private Sub Form3_FormClosed(sender As Object, e As FormClosedEventArgs)
-        Me.Show()
-        RemoveHandler Form3.FormClosed, AddressOf Form3_FormClosed
-    End Sub
-
-    Private Sub Form4_FormClosed(sender As Object, e As FormClosedEventArgs)
-        Me.Show()
-        RemoveHandler Form4.FormClosed, AddressOf Form4_FormClosed
-    End Sub
-
 
     Private Sub Btn_login_Click(sender As Object, e As EventArgs) Handles Btn_login.Click
         Dim MSG As String = ""
@@ -60,15 +50,13 @@ Public Class Form1
 
                                 If role = "Admin" Then
                                     MsgBox("Welcome, Admin!")
-                                    AddHandler Form3.FormClosed, AddressOf Form3_FormClosed
                                     Form3.Show()
-                                    Me.Hide()
+
 
                                 ElseIf role = "User" Then
                                     MsgBox("Welcome, User!")
-                                    AddHandler Form4.FormClosed, AddressOf Form4_FormClosed
                                     Form4.Show()
-                                    Me.Hide()
+
                                 Else
                                     MsgBox("Unknown role.")
                                 End If

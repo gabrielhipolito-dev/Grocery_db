@@ -84,13 +84,14 @@ Public Class Form3
 
 
     Private Sub Update_button_Click(sender As Object, e As EventArgs) Handles Update_button.Click
-        ' Validate input
+        ' Validate product number
         Dim prodno As Integer
         If Not Integer.TryParse(prodno_txt.Text, prodno) Then
             MessageBox.Show("Invalid product number.")
             Exit Sub
         End If
 
+        ' Validate product name and group name
         Dim prodName As String = prodname_txt.Text.Trim()
         Dim groupName As String = prodgroup_txt.Text.Trim()
 
@@ -99,28 +100,40 @@ Public Class Form3
             Exit Sub
         End If
 
+        ' Validate price
         Dim priceVal As Decimal
         If Not Decimal.TryParse(price_txt.Text, priceVal) Then
             MessageBox.Show("Invalid price.")
             Exit Sub
         End If
+        If priceVal < 0 Then
+            MessageBox.Show("Price cannot be negative.")
+            Exit Sub
+        End If
 
+        ' Validate quantity
         Dim quantityVal As Integer
         If Not Integer.TryParse(quantity_txt.Text, quantityVal) Then
             MessageBox.Show("Invalid quantity.")
             Exit Sub
         End If
+        If quantityVal < 0 Then
+            MessageBox.Show("Quantity cannot be negative.")
+            Exit Sub
+        End If
 
+        ' Validate expiry date
         Dim expiryDate As Date = expdate_txt.Value.Date
         If expiryDate < Date.Today.AddDays(7) Then
             MessageBox.Show("Expiry date must be at least 7 days from today.")
             Exit Sub
         End If
 
+        ' Determine status
         Dim statusVal As String = If(quantityVal > 0, "Available", "Unavailable")
 
         Try
-            ' 1. Ensure product_name exists in ProductCatalog
+            ' Ensure ProductCatalog contains the product
             Dim rs As New ADODB.Recordset
             Dim checkSQL As String = "SELECT product_name FROM ProductCatalog WHERE LOWER(product_name) = LOWER(?)"
             Dim checkCmd As New ADODB.Command
@@ -131,7 +144,7 @@ Public Class Form3
             rs = checkCmd.Execute()
 
             If rs.EOF Then
-                ' Insert new product_name into ProductCatalog
+                ' Insert new product into ProductCatalog
                 Dim insertCmd As New ADODB.Command
                 insertCmd.ActiveConnection = CNN
                 insertCmd.CommandText = "INSERT INTO ProductCatalog (product_name, group_name) VALUES (?, ?)"
@@ -142,7 +155,7 @@ Public Class Form3
             End If
             rs.Close()
 
-            ' 2. Now update ProductStock
+            ' Update ProductStock
             Dim updateCmd As New ADODB.Command
             updateCmd.ActiveConnection = CNN
             updateCmd.CommandText = "UPDATE ProductStock SET product_name = ?, price = ?, expiry_date = ?, quantity = ?, status = ? WHERE product_number = ?"
@@ -158,8 +171,7 @@ Public Class Form3
             Dim affected As Integer
             updateCmd.Execute(affected)
 
-
-            If CInt(affected) > 0 Then
+            If affected > 0 Then
                 MessageBox.Show("Product updated successfully.")
                 LoadProducts()
                 ClearFields()
@@ -171,10 +183,6 @@ Public Class Form3
             MessageBox.Show("Update failed: " & ex.Message)
         End Try
     End Sub
-
-
-
-
 
     Private Sub Delete_button_Click(sender As Object, e As EventArgs) Handles Delete_button.Click
         Try
@@ -332,20 +340,21 @@ Public Class Form3
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
 
-
             prodno_txt.Text = If(row.Cells(0).Value IsNot Nothing, row.Cells(0).Value.ToString(), "")
             prodname_txt.Text = If(row.Cells(1).Value IsNot Nothing, row.Cells(1).Value.ToString(), "")
             prodgroup_txt.Text = If(row.Cells(2).Value IsNot Nothing, row.Cells(2).Value.ToString(), "")
             price_txt.Text = If(row.Cells(3).Value IsNot Nothing, row.Cells(3).Value.ToString(), "")
-            quantity_txt.Text = If(row.Cells(4).Value IsNot Nothing, row.Cells(5).Value.ToString(), "")
 
-            Dim expiryObj = row.Cells(5).Value
-            If expiryObj IsNot Nothing AndAlso IsDate(expiryObj) Then
-                expdate_txt.Value = Convert.ToDateTime(expiryObj)
+            ' Cell(4) = expiry_date
+            If row.Cells(4).Value IsNot Nothing AndAlso IsDate(row.Cells(4).Value) Then
+                expdate_txt.Value = Convert.ToDateTime(row.Cells(4).Value)
             Else
                 expdate_txt.Value = Date.Today
             End If
+
+            quantity_txt.Text = If(row.Cells(5).Value IsNot Nothing, row.Cells(5).Value.ToString(), "")
         End If
+
     End Sub
 
 End Class
