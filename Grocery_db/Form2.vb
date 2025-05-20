@@ -101,8 +101,4 @@
             MessageBox.Show("Error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-    Private Sub tb_lastname_TextChanged(sender As Object, e As EventArgs) Handles tb_lastname.TextChanged
-
-    End Sub
 End Class
