@@ -39,7 +39,7 @@ Partial Class Form3
         Label6 = New Label()
         DataGridView1 = New DataGridView()
         txt_searchbox = New TextBox()
-        btn_search = New Button()
+        Btn_search = New Button()
         Label7 = New Label()
         quantity_txt = New TextBox()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
@@ -205,14 +205,14 @@ Partial Class Form3
         txt_searchbox.Size = New Size(630, 21)
         txt_searchbox.TabIndex = 20
         ' 
-        ' btn_search
+        ' Btn_search
         ' 
-        btn_search.Location = New Point(369, 49)
-        btn_search.Name = "btn_search"
-        btn_search.Size = New Size(75, 23)
-        btn_search.TabIndex = 22
-        btn_search.Text = "Search"
-        btn_search.UseVisualStyleBackColor = True
+        Btn_search.Location = New Point(369, 49)
+        Btn_search.Name = "Btn_search"
+        Btn_search.Size = New Size(75, 23)
+        Btn_search.TabIndex = 22
+        Btn_search.Text = "Search"
+        Btn_search.UseVisualStyleBackColor = True
         ' 
         ' Label7
         ' 
@@ -237,7 +237,7 @@ Partial Class Form3
         ClientSize = New Size(1028, 540)
         Controls.Add(quantity_txt)
         Controls.Add(Label7)
-        Controls.Add(btn_search)
+        Controls.Add(Btn_search)
         Controls.Add(txt_searchbox)
         Controls.Add(DataGridView1)
         Controls.Add(Label6)
@@ -281,7 +281,7 @@ Partial Class Form3
     Friend WithEvents Label6 As Label
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents txt_searchbox As TextBox
-    Friend WithEvents btn_search As Button
+    Friend WithEvents Btn_search As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents quantity_txt As TextBox
 End Class
