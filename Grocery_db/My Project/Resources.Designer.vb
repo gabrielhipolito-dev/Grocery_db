@@ -59,25 +59,5 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property green_watercolor_texture_background_free_vector() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("green-watercolor-texture-background-free-vector", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property VecteezyBackground_Green_Textures_BackgroundAA1022_generated() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("VecteezyBackground-Green-Textures-BackgroundAA1022_generated", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
     End Module
 End Namespace

@@ -29,15 +29,14 @@ Partial Class Form1
         TextBox2 = New TextBox()
         BtnCreateAccount = New Button()
         Label3 = New Label()
-        Label5 = New Label()
+        Label4 = New Label()
         SuspendLayout()
         ' 
         ' TextBox1
         ' 
-        TextBox1.Location = New Point(98, 181)
-        TextBox1.Margin = New Padding(3, 4, 3, 4)
+        TextBox1.Location = New Point(86, 136)
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(290, 27)
+        TextBox1.Size = New Size(254, 23)
         TextBox1.TabIndex = 0
         ' 
         ' Btn_login
@@ -46,10 +45,9 @@ Partial Class Form1
         Btn_login.FlatStyle = FlatStyle.Popup
         Btn_login.Font = New Font("Georgia", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Btn_login.ForeColor = Color.White
-        Btn_login.Location = New Point(98, 341)
-        Btn_login.Margin = New Padding(3, 4, 3, 4)
+        Btn_login.Location = New Point(86, 256)
         Btn_login.Name = "Btn_login"
-        Btn_login.Size = New Size(290, 73)
+        Btn_login.Size = New Size(254, 55)
         Btn_login.TabIndex = 1
         Btn_login.Text = "Login"
         Btn_login.UseVisualStyleBackColor = False
@@ -60,9 +58,9 @@ Partial Class Form1
         Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Georgia", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.DimGray
-        Label1.Location = New Point(98, 151)
+        Label1.Location = New Point(86, 113)
         Label1.Name = "Label1"
-        Label1.Size = New Size(92, 18)
+        Label1.Size = New Size(78, 15)
         Label1.TabIndex = 2
         Label1.Text = "Username:"
         ' 
@@ -72,18 +70,17 @@ Partial Class Form1
         Label2.BackColor = Color.Transparent
         Label2.Font = New Font("Georgia", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.ForeColor = Color.DimGray
-        Label2.Location = New Point(98, 239)
+        Label2.Location = New Point(86, 179)
         Label2.Name = "Label2"
-        Label2.Size = New Size(88, 18)
+        Label2.Size = New Size(71, 15)
         Label2.TabIndex = 4
         Label2.Text = "Password:"
         ' 
         ' TextBox2
         ' 
-        TextBox2.Location = New Point(98, 272)
-        TextBox2.Margin = New Padding(3, 4, 3, 4)
+        TextBox2.Location = New Point(86, 204)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(290, 27)
+        TextBox2.Size = New Size(254, 23)
         TextBox2.TabIndex = 3
         TextBox2.UseSystemPasswordChar = True
         ' 
@@ -93,10 +90,9 @@ Partial Class Form1
         BtnCreateAccount.FlatStyle = FlatStyle.Flat
         BtnCreateAccount.ForeColor = Color.Black
         BtnCreateAccount.ImageAlign = ContentAlignment.TopLeft
-        BtnCreateAccount.Location = New Point(98, 443)
-        BtnCreateAccount.Margin = New Padding(3, 4, 3, 4)
+        BtnCreateAccount.Location = New Point(86, 332)
         BtnCreateAccount.Name = "BtnCreateAccount"
-        BtnCreateAccount.Size = New Size(290, 51)
+        BtnCreateAccount.Size = New Size(254, 38)
         BtnCreateAccount.TabIndex = 5
         BtnCreateAccount.Text = "Not yet registered? Create an account"
         BtnCreateAccount.UseVisualStyleBackColor = False
@@ -107,34 +103,33 @@ Partial Class Form1
         Label3.BackColor = Color.Transparent
         Label3.Font = New Font("Georgia", 28.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.DimGray
-        Label3.Location = New Point(98, 43)
+        Label3.Location = New Point(86, 32)
         Label3.Name = "Label3"
-        Label3.Size = New Size(142, 54)
+        Label3.Size = New Size(114, 43)
         Label3.TabIndex = 6
         Label3.Text = "Login"
         ' 
-        ' Label5
+        ' Label4
         ' 
-        Label5.AutoSize = True
-        Label5.BackColor = Color.Transparent
-        Label5.Font = New Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = Color.DimGray
-        Label5.Location = New Point(513, 106)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(389, 92)
-        Label5.TabIndex = 8
-        Label5.Text = "Grocery Inventory " & vbCrLf & "Management System" & vbCrLf
-        Label5.TextAlign = ContentAlignment.TopCenter
+        Label4.AutoSize = True
+        Label4.BackColor = Color.Transparent
+        Label4.Font = New Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = Color.DimGray
+        Label4.Location = New Point(466, 87)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(283, 76)
+        Label4.TabIndex = 7
+        Label4.Text = "Grocery Inventory " & vbCrLf & "Management"
+        Label4.TextAlign = ContentAlignment.TopCenter
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.InactiveBorder
-        BackgroundImage = My.Resources.Resources.green_watercolor_texture_background_free_vector
         BackgroundImageLayout = ImageLayout.Zoom
-        ClientSize = New Size(914, 599)
-        Controls.Add(Label5)
+        ClientSize = New Size(800, 449)
+        Controls.Add(Label4)
         Controls.Add(Label3)
         Controls.Add(BtnCreateAccount)
         Controls.Add(Label2)
@@ -142,7 +137,6 @@ Partial Class Form1
         Controls.Add(Label1)
         Controls.Add(Btn_login)
         Controls.Add(TextBox1)
-        Margin = New Padding(3, 4, 3, 4)
         Name = "Form1"
         Text = "Login Form"
         ResumeLayout(False)
@@ -156,6 +150,6 @@ Partial Class Form1
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents BtnCreateAccount As Button
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
 
 End Class
