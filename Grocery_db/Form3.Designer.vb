@@ -53,7 +53,7 @@ Partial Class Form3
         Label1.ForeColor = Color.DimGray
         Label1.Location = New Point(26, 9)
         Label1.Name = "Label1"
-        Label1.Size = New Size(169, 31)
+        Label1.Size = New Size(210, 39)
         Label1.TabIndex = 0
         Label1.Text = "Admin Form"
         ' 
@@ -61,21 +61,21 @@ Partial Class Form3
         ' 
         prodno_txt.Location = New Point(93, 89)
         prodno_txt.Name = "prodno_txt"
-        prodno_txt.Size = New Size(219, 21)
+        prodno_txt.Size = New Size(219, 25)
         prodno_txt.TabIndex = 1
         ' 
         ' prodname_txt
         ' 
         prodname_txt.Location = New Point(93, 151)
         prodname_txt.Name = "prodname_txt"
-        prodname_txt.Size = New Size(219, 21)
+        prodname_txt.Size = New Size(219, 25)
         prodname_txt.TabIndex = 2
         ' 
         ' price_txt
         ' 
         price_txt.Location = New Point(93, 213)
         price_txt.Name = "price_txt"
-        price_txt.Size = New Size(219, 21)
+        price_txt.Size = New Size(219, 25)
         price_txt.TabIndex = 3
         ' 
         ' prodgroup_txt
@@ -84,14 +84,14 @@ Partial Class Form3
         prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks", "Cannes Goods", "Cleaning Materials"})
         prodgroup_txt.Location = New Point(93, 272)
         prodgroup_txt.Name = "prodgroup_txt"
-        prodgroup_txt.Size = New Size(174, 23)
+        prodgroup_txt.Size = New Size(174, 26)
         prodgroup_txt.TabIndex = 4
         ' 
         ' expdate_txt
         ' 
         expdate_txt.Location = New Point(93, 332)
         expdate_txt.Name = "expdate_txt"
-        expdate_txt.Size = New Size(250, 21)
+        expdate_txt.Size = New Size(250, 25)
         expdate_txt.TabIndex = 5
         ' 
         ' Save_button
@@ -144,7 +144,7 @@ Partial Class Form3
         Label2.AutoSize = True
         Label2.Location = New Point(93, 67)
         Label2.Name = "Label2"
-        Label2.Size = New Size(75, 15)
+        Label2.Size = New Size(88, 18)
         Label2.TabIndex = 11
         Label2.Text = "Product No."
         ' 
@@ -153,7 +153,7 @@ Partial Class Form3
         Label3.AutoSize = True
         Label3.Location = New Point(93, 130)
         Label3.Name = "Label3"
-        Label3.Size = New Size(90, 15)
+        Label3.Size = New Size(105, 18)
         Label3.TabIndex = 12
         Label3.Text = "Product Name"
         ' 
@@ -162,7 +162,7 @@ Partial Class Form3
         Label4.AutoSize = True
         Label4.Location = New Point(93, 192)
         Label4.Name = "Label4"
-        Label4.Size = New Size(36, 15)
+        Label4.Size = New Size(41, 18)
         Label4.TabIndex = 13
         Label4.Text = "Price"
         ' 
@@ -171,7 +171,7 @@ Partial Class Form3
         Label5.AutoSize = True
         Label5.Location = New Point(93, 251)
         Label5.Name = "Label5"
-        Label5.Size = New Size(91, 15)
+        Label5.Size = New Size(107, 18)
         Label5.TabIndex = 14
         Label5.Text = "Product Group"
         ' 
@@ -180,7 +180,7 @@ Partial Class Form3
         Label6.AutoSize = True
         Label6.Location = New Point(93, 311)
         Label6.Name = "Label6"
-        Label6.Size = New Size(77, 15)
+        Label6.Size = New Size(87, 18)
         Label6.TabIndex = 15
         Label6.Text = "Expiry Date"
         ' 
@@ -202,24 +202,27 @@ Partial Class Form3
         txt_searchbox.Location = New Point(369, 79)
         txt_searchbox.Margin = New Padding(2)
         txt_searchbox.Name = "txt_searchbox"
-        txt_searchbox.Size = New Size(630, 21)
+        txt_searchbox.Size = New Size(630, 25)
         txt_searchbox.TabIndex = 20
         ' 
         ' Btn_search
         ' 
+        Btn_search.BackColor = Color.DarkOliveGreen
+        Btn_search.FlatStyle = FlatStyle.Popup
+        Btn_search.ForeColor = SystemColors.Control
         Btn_search.Location = New Point(369, 49)
         Btn_search.Name = "Btn_search"
         Btn_search.Size = New Size(75, 23)
         Btn_search.TabIndex = 22
         Btn_search.Text = "Search"
-        Btn_search.UseVisualStyleBackColor = True
+        Btn_search.UseVisualStyleBackColor = False
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
         Label7.Location = New Point(93, 366)
         Label7.Name = "Label7"
-        Label7.Size = New Size(61, 15)
+        Label7.Size = New Size(68, 18)
         Label7.TabIndex = 23
         Label7.Text = "Quantity"
         ' 
@@ -227,12 +230,12 @@ Partial Class Form3
         ' 
         quantity_txt.Location = New Point(93, 384)
         quantity_txt.Name = "quantity_txt"
-        quantity_txt.Size = New Size(219, 21)
+        quantity_txt.Size = New Size(219, 25)
         quantity_txt.TabIndex = 24
         ' 
         ' Form3
         ' 
-        AutoScaleDimensions = New SizeF(8F, 15F)
+        AutoScaleDimensions = New SizeF(9F, 18F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1028, 540)
         Controls.Add(quantity_txt)
