@@ -157,20 +157,7 @@ Public Class Form3
         End Try
     End Sub
 
-
-
     Private Sub LoadProducts()
-        Try
-            Dim deleteExpired As New Command
-            deleteExpired.ActiveConnection = CNN
-            deleteExpired.CommandText = "DELETE FROM Products WHERE expiry_date < GETDATE()"
-            deleteExpired.CommandType = CommandTypeEnum.adCmdText
-            deleteExpired.Execute()
-        Catch ex As Exception
-            MessageBox.Show("Error removing expired products: " & ex.Message)
-            Exit Sub
-        End Try
-
         Dim RST As New Recordset
         Dim STRSQL As String = "SELECT product_number, product_name, price, group_name, expiry_date, status, quantity FROM Products"
 
@@ -189,24 +176,36 @@ Public Class Form3
 
             While Not RST.EOF
                 dt.Rows.Add(
-                    RST.Fields("product_number").Value,
-                    RST.Fields("product_name").Value,
-                    RST.Fields("price").Value,
-                    RST.Fields("group_name").Value,
-                    RST.Fields("expiry_date").Value,
-                    RST.Fields("status").Value,
-                    RST.Fields("quantity").Value
-                )
+                RST.Fields("product_number").Value,
+                RST.Fields("product_name").Value,
+                RST.Fields("price").Value,
+                RST.Fields("group_name").Value,
+                RST.Fields("expiry_date").Value,
+                RST.Fields("status").Value,
+                RST.Fields("quantity").Value
+            )
                 RST.MoveNext()
             End While
 
             DataGridView1.DataSource = dt
             DataGridView1.AutoResizeColumns()
+
+            ' Highlight expired rows in red and make them read-only
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                Dim expiryDate As Date = Convert.ToDateTime(row.Cells("expiry_date").Value)
+                If expiryDate < Date.Today Then
+                    row.DefaultCellStyle.ForeColor = Color.Red
+                    row.ReadOnly = True
+                    row.DefaultCellStyle.Font = New Font(DataGridView1.Font, FontStyle.Italic)
+                End If
+            Next
+
             RST.Close()
         Catch ex As Exception
             MessageBox.Show("Error loading products: " & ex.Message)
         End Try
     End Sub
+
 
     Private Sub Clear_button_Click(sender As Object, e As EventArgs) Handles Clear_button.Click
         ClearFields()
@@ -218,10 +217,6 @@ Public Class Form3
         price_txt.Clear()
         quantity_txt.Clear()
         expdate_txt.Value = Date.Today()
-    End Sub
-
-    Private Sub Btn_load_Click(sender As Object, e As EventArgs)
-        LoadProducts()
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
@@ -238,7 +233,9 @@ Public Class Form3
                                "product_name LIKE ? OR " &
                                "CAST(price AS NVARCHAR) LIKE ? OR " &
                                "group_name LIKE ? OR " &
-                               "status LIKE ?"
+                               "status LIKE ? OR " &
+                               "CAST(quantity AS NVARCHAR) LIKE ? OR " &
+                               "CONVERT(NVARCHAR, expiry_date, 23) LIKE ?"
 
         Try
             If CNN.State = 0 Then CNN.Open()
@@ -249,11 +246,9 @@ Public Class Form3
             cmd.CommandType = CommandTypeEnum.adCmdText
 
             Dim paramValue As String = "%" & searchText & "%"
-            cmd.Parameters.Append(cmd.CreateParameter("param1", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
-            cmd.Parameters.Append(cmd.CreateParameter("param2", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, paramValue))
-            cmd.Parameters.Append(cmd.CreateParameter("param3", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
-            cmd.Parameters.Append(cmd.CreateParameter("param4", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, paramValue))
-            cmd.Parameters.Append(cmd.CreateParameter("param5", DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 20, paramValue))
+            For i As Integer = 1 To 7
+                cmd.Parameters.Append(cmd.CreateParameter("param" & i, DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 100, paramValue))
+            Next
 
             RST = cmd.Execute()
 
@@ -281,9 +276,21 @@ Public Class Form3
 
             DataGridView1.DataSource = dt
             DataGridView1.AutoResizeColumns()
+
+            ' Re-apply expired styling
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                Dim expiryDate As Date = Convert.ToDateTime(row.Cells("expiry_date").Value)
+                If expiryDate < Date.Today Then
+                    row.DefaultCellStyle.ForeColor = Color.Red
+                    row.ReadOnly = True
+                    row.DefaultCellStyle.Font = New Font(DataGridView1.Font, FontStyle.Italic)
+                End If
+            Next
+
             RST.Close()
         Catch ex As Exception
             MessageBox.Show("Search failed: " & ex.Message)
         End Try
     End Sub
+
 End Class
