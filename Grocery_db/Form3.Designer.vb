@@ -42,6 +42,7 @@ Partial Class Form3
         Btn_search = New Button()
         Label7 = New Label()
         quantity_txt = New TextBox()
+        BtnCreateAccount = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -81,7 +82,7 @@ Partial Class Form3
         ' prodgroup_txt
         ' 
         prodgroup_txt.FormattingEnabled = True
-        prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks", "Cannes Goods", "Cleaning Materials"})
+        prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks", "Canned Goods", "Cleaning Materials"})
         prodgroup_txt.Location = New Point(93, 272)
         prodgroup_txt.Name = "prodgroup_txt"
         prodgroup_txt.Size = New Size(174, 23)
@@ -193,7 +194,7 @@ Partial Class Form3
         DataGridView1.RowHeadersVisible = False
         DataGridView1.RowHeadersWidth = 51
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.Size = New Size(630, 396)
+        DataGridView1.Size = New Size(647, 396)
         DataGridView1.TabIndex = 18
         ' 
         ' txt_searchbox
@@ -202,7 +203,7 @@ Partial Class Form3
         txt_searchbox.Location = New Point(369, 79)
         txt_searchbox.Margin = New Padding(2)
         txt_searchbox.Name = "txt_searchbox"
-        txt_searchbox.Size = New Size(630, 21)
+        txt_searchbox.Size = New Size(647, 21)
         txt_searchbox.TabIndex = 20
         ' 
         ' Btn_search
@@ -230,11 +231,25 @@ Partial Class Form3
         quantity_txt.Size = New Size(219, 21)
         quantity_txt.TabIndex = 24
         ' 
+        ' BtnCreateAccount
+        ' 
+        BtnCreateAccount.BackColor = Color.Transparent
+        BtnCreateAccount.FlatStyle = FlatStyle.Flat
+        BtnCreateAccount.ForeColor = Color.Black
+        BtnCreateAccount.ImageAlign = ContentAlignment.TopLeft
+        BtnCreateAccount.Location = New Point(201, 9)
+        BtnCreateAccount.Name = "BtnCreateAccount"
+        BtnCreateAccount.Size = New Size(126, 38)
+        BtnCreateAccount.TabIndex = 25
+        BtnCreateAccount.Text = " Create an account"
+        BtnCreateAccount.UseVisualStyleBackColor = False
+        ' 
         ' Form3
         ' 
         AutoScaleDimensions = New SizeF(8F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1028, 540)
+        Controls.Add(BtnCreateAccount)
         Controls.Add(quantity_txt)
         Controls.Add(Label7)
         Controls.Add(Btn_search)
@@ -256,6 +271,7 @@ Partial Class Form3
         Controls.Add(prodno_txt)
         Controls.Add(Label1)
         Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(3, 4, 3, 4)
         Name = "Form3"
         Text = "Admin Form"
@@ -284,4 +300,5 @@ Partial Class Form3
     Friend WithEvents Btn_search As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents quantity_txt As TextBox
+    Friend WithEvents BtnCreateAccount As Button
 End Class

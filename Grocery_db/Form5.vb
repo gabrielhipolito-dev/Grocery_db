@@ -1,4 +1,4 @@
-﻿Public Class Form2
+﻿Public Class Form5
 
 
     Private Sub Btn_create_Click(sender As Object, e As EventArgs) Handles Btn_create.Click
@@ -9,9 +9,9 @@
                                        Not String.IsNullOrWhiteSpace(tb_email.Text) AndAlso
                                        Not String.IsNullOrWhiteSpace(tb_password.Text)
 
-        Dim emailValid As Boolean = tb_email.Text.ToLower().EndsWith("@gmail.com")
+        Dim emailValid As Boolean = tb_email.Text.ToLower().EndsWith("@gmail.com") Or tb_email.Text.ToLower().EndsWith("@gmail.com")
         Dim hasSpecialChar As Boolean = tb_password.Text.Any(Function(c) Not Char.IsLetterOrDigit(c))
-        Dim roleSelected As Boolean = RbUser.Checked
+        Dim roleSelected As Boolean = RbAdmin.Checked OrElse RbUser.Checked
 
         'logic date
         Dim birthday As Date = dtp_birthday.Value
@@ -37,7 +37,7 @@
         End If
 
         ' Proceed to insert into database
-        Dim role As String = If(RbUser.Checked, "User", "Admin")
+        Dim role As String = If(RbAdmin.Checked, "Admin", "User")
 
         Try
             Using conn As New OleDb.OleDbConnection("Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;")
@@ -99,5 +99,4 @@
             MessageBox.Show("Error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
 End Class

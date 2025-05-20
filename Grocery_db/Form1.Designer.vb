@@ -137,7 +137,9 @@ Partial Class Form1
         Controls.Add(Label1)
         Controls.Add(Btn_login)
         Controls.Add(TextBox1)
+        FormBorderStyle = FormBorderStyle.FixedDialog
         Name = "Form1"
+        ShowIcon = False
         Text = "Login Form"
         ResumeLayout(False)
         PerformLayout()

@@ -4,6 +4,18 @@ Imports System.Data
 Public Class Form3
     Dim CNN As New Connection
 
+
+    Private Sub Btn_createaccount_Click(sender As Object, e As EventArgs) Handles BtnCreateAccount.Click
+        AddHandler Form5.FormClosed, AddressOf Form5_FormClosed
+        Form5.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Form5_FormClosed(sender As Object, e As FormClosedEventArgs)
+        Me.Show()
+        RemoveHandler Form5.FormClosed, AddressOf Form5_FormClosed
+    End Sub
+
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             CNN.ConnectionString = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;"

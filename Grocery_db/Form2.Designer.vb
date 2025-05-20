@@ -33,7 +33,6 @@ Partial Class Form2
         Label6 = New Label()
         dtp_birthday = New DateTimePicker()
         Label7 = New Label()
-        RbAdmin = New RadioButton()
         tb_lastname = New TextBox()
         tb_email = New TextBox()
         Label5 = New Label()
@@ -159,20 +158,6 @@ Partial Class Form2
         Label7.TabIndex = 16
         Label7.Text = "Date of Birth"
         ' 
-        ' RbAdmin
-        ' 
-        RbAdmin.AutoSize = True
-        RbAdmin.BackColor = Color.Transparent
-        RbAdmin.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        RbAdmin.ForeColor = Color.DimGray
-        RbAdmin.Location = New Point(32, 79)
-        RbAdmin.Name = "RbAdmin"
-        RbAdmin.Size = New Size(65, 19)
-        RbAdmin.TabIndex = 17
-        RbAdmin.TabStop = True
-        RbAdmin.Text = "Admin"
-        RbAdmin.UseVisualStyleBackColor = False
-        ' 
         ' tb_lastname
         ' 
         tb_lastname.Font = New Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -204,7 +189,7 @@ Partial Class Form2
         ' RbUser
         ' 
         RbUser.AutoSize = True
-        RbUser.Location = New Point(181, 79)
+        RbUser.Location = New Point(32, 68)
         RbUser.Name = "RbUser"
         RbUser.Size = New Size(48, 19)
         RbUser.TabIndex = 22
@@ -222,7 +207,6 @@ Partial Class Form2
         Controls.Add(Label5)
         Controls.Add(tb_email)
         Controls.Add(tb_lastname)
-        Controls.Add(RbAdmin)
         Controls.Add(Label7)
         Controls.Add(dtp_birthday)
         Controls.Add(Label6)
@@ -234,6 +218,7 @@ Partial Class Form2
         Controls.Add(Btn_create)
         Controls.Add(Label1)
         Controls.Add(tb_firstname)
+        FormBorderStyle = FormBorderStyle.FixedDialog
         Name = "Form2"
         Text = "Registration Form"
         ResumeLayout(False)
@@ -251,7 +236,6 @@ Partial Class Form2
     Friend WithEvents Label6 As Label
     Friend WithEvents dtp_birthday As DateTimePicker
     Friend WithEvents Label7 As Label
-    Friend WithEvents RbAdmin As RadioButton
     Friend WithEvents tb_lastname As TextBox
     Friend WithEvents tb_email As TextBox
     Friend WithEvents Label5 As Label

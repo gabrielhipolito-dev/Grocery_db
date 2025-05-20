@@ -83,6 +83,7 @@ Partial Class Form4
         Controls.Add(Btn_search1)
         Controls.Add(Label6)
         Controls.Add(DataGridView1)
+        FormBorderStyle = FormBorderStyle.FixedDialog
         Margin = New Padding(2)
         Name = "Form4"
         StartPosition = FormStartPosition.CenterScreen
