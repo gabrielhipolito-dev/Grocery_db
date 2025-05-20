@@ -25,8 +25,8 @@ Public Class Form3
 
             ' Validate price
             Dim priceval As Decimal
-            If Not Decimal.TryParse(price_txt.Text, priceval) Then
-                MessageBox.Show("Price must be a decimal.")
+            If Not Decimal.TryParse(price_txt.Text, priceval) OrElse priceval < 0 Then
+                MessageBox.Show("Price must be a non-negative decimal.")
                 Exit Sub
             End If
 
@@ -94,7 +94,6 @@ Public Class Form3
         ' Validate product name and group name
         Dim prodName As String = prodname_txt.Text.Trim()
         Dim groupName As String = prodgroup_txt.Text.Trim()
-
         If prodName = "" OrElse groupName = "" Then
             MessageBox.Show("Product name and group name cannot be empty.")
             Exit Sub
@@ -133,18 +132,17 @@ Public Class Form3
         Dim statusVal As String = If(quantityVal > 0, "Available", "Unavailable")
 
         Try
-            ' Ensure ProductCatalog contains the product
+            ' Ensure product exists in ProductCatalog, insert or update group_name accordingly
             Dim rs As New ADODB.Recordset
-            Dim checkSQL As String = "SELECT product_name FROM ProductCatalog WHERE LOWER(product_name) = LOWER(?)"
             Dim checkCmd As New ADODB.Command
             checkCmd.ActiveConnection = CNN
-            checkCmd.CommandText = checkSQL
+            checkCmd.CommandText = "SELECT product_name FROM ProductCatalog WHERE LOWER(product_name) = LOWER(?)"
             checkCmd.CommandType = ADODB.CommandTypeEnum.adCmdText
             checkCmd.Parameters.Append(checkCmd.CreateParameter("product_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, prodName))
             rs = checkCmd.Execute()
 
             If rs.EOF Then
-                ' Insert new product into ProductCatalog
+                ' Insert if not exists
                 Dim insertCmd As New ADODB.Command
                 insertCmd.ActiveConnection = CNN
                 insertCmd.CommandText = "INSERT INTO ProductCatalog (product_name, group_name) VALUES (?, ?)"
@@ -152,6 +150,15 @@ Public Class Form3
                 insertCmd.Parameters.Append(insertCmd.CreateParameter("product_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, prodName))
                 insertCmd.Parameters.Append(insertCmd.CreateParameter("group_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, groupName))
                 insertCmd.Execute()
+            Else
+                ' Update group_name if it already exists
+                Dim updateGroupCmd As New ADODB.Command
+                updateGroupCmd.ActiveConnection = CNN
+                updateGroupCmd.CommandText = "UPDATE ProductCatalog SET group_name = ? WHERE product_name = ?"
+                updateGroupCmd.CommandType = ADODB.CommandTypeEnum.adCmdText
+                updateGroupCmd.Parameters.Append(updateGroupCmd.CreateParameter("group_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, groupName))
+                updateGroupCmd.Parameters.Append(updateGroupCmd.CreateParameter("product_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, prodName))
+                updateGroupCmd.Execute()
             End If
             rs.Close()
 
@@ -183,6 +190,7 @@ Public Class Form3
             MessageBox.Show("Update failed: " & ex.Message)
         End Try
     End Sub
+
 
     Private Sub Delete_button_Click(sender As Object, e As EventArgs) Handles Delete_button.Click
         Try
