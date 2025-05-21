@@ -36,7 +36,6 @@ Partial Class Form2
         tb_lastname = New TextBox()
         tb_email = New TextBox()
         Label5 = New Label()
-        RbUser = New RadioButton()
         SuspendLayout()
         ' 
         ' tb_firstname
@@ -182,20 +181,9 @@ Partial Class Form2
         Label5.ForeColor = Color.DimGray
         Label5.Location = New Point(53, 27)
         Label5.Name = "Label5"
-        Label5.Size = New Size(274, 38)
+        Label5.Size = New Size(168, 38)
         Label5.TabIndex = 21
-        Label5.Text = "Registration Form"
-        ' 
-        ' RbUser
-        ' 
-        RbUser.AutoSize = True
-        RbUser.Location = New Point(32, 68)
-        RbUser.Name = "RbUser"
-        RbUser.Size = New Size(48, 19)
-        RbUser.TabIndex = 22
-        RbUser.TabStop = True
-        RbUser.Text = "User"
-        RbUser.UseVisualStyleBackColor = True
+        Label5.Text = "User Form"
         ' 
         ' Form2
         ' 
@@ -204,7 +192,6 @@ Partial Class Form2
         BackColor = Color.YellowGreen
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(800, 450)
-        Controls.Add(RbUser)
         Controls.Add(Label5)
         Controls.Add(tb_email)
         Controls.Add(tb_lastname)
@@ -240,5 +227,4 @@ Partial Class Form2
     Friend WithEvents tb_lastname As TextBox
     Friend WithEvents tb_email As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents RbUser As RadioButton
 End Class

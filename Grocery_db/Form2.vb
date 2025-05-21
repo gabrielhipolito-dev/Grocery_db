@@ -11,7 +11,7 @@
 
         Dim emailValid As Boolean = tb_email.Text.ToLower().EndsWith("@gmail.com")
         Dim hasSpecialChar As Boolean = tb_password.Text.Any(Function(c) Not Char.IsLetterOrDigit(c))
-        Dim roleSelected As Boolean = RbUser.Checked
+
 
         'logic date
         Dim birthday As Date = dtp_birthday.Value
@@ -28,16 +28,13 @@
         ElseIf Not hasSpecialChar Then
             MessageBox.Show("Password must contain at least one special character.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
-        ElseIf Not roleSelected Then
-            MessageBox.Show("Please select a role (Admin/User).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
         ElseIf Not is18OrOlder Then
             MessageBox.Show("You must be at least 18 years old.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
         ' Proceed to insert into database
-        Dim role As String = If(RbUser.Checked, "User", "Admin")
+        Dim role As String = "User"
 
         Try
             Using conn As New OleDb.OleDbConnection("Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;")
@@ -73,16 +70,8 @@
                 End Using
 
                 ' Step 3: Insert into Admins or Users
-                If role = "Admin" Then
-                    Dim insertAdminQuery As String = "INSERT INTO Admins (AccountID, FirstName, LastName, DateOfBirth) VALUES (?, ?, ?, ?)"
-                    Using insertAdminCmd As New OleDb.OleDbCommand(insertAdminQuery, conn)
-                        insertAdminCmd.Parameters.AddWithValue("?", accountId)
-                        insertAdminCmd.Parameters.AddWithValue("?", tb_firstname.Text.Trim())
-                        insertAdminCmd.Parameters.AddWithValue("?", tb_lastname.Text.Trim())
-                        insertAdminCmd.Parameters.AddWithValue("?", birthday)
-                        insertAdminCmd.ExecuteNonQuery()
-                    End Using
-                ElseIf role = "User" Then
+
+                If role = "User" Then
                     Dim insertUserQuery As String = "INSERT INTO Users (AccountID, FirstName, LastName, DateOfBirth) VALUES (?, ?, ?, ?)"
                     Using insertUserCmd As New OleDb.OleDbCommand(insertUserQuery, conn)
                         insertUserCmd.Parameters.AddWithValue("?", accountId)
@@ -100,4 +89,7 @@
         End Try
     End Sub
 
+    Private Sub Label8_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class
