@@ -15,11 +15,8 @@
 
     Private Sub LoadProducts()
         Try
-            ' Close RST if already open
-            If RST IsNot Nothing Then
-                If RST.State = 1 Then ' Open
-                    RST.Close()
-                End If
+            If RST IsNot Nothing AndAlso RST.State = 1 Then
+                RST.Close()
                 RST = Nothing
             End If
 
@@ -67,11 +64,8 @@
         End If
 
         Try
-            ' Close RST if already open
-            If RST IsNot Nothing Then
-                If RST.State = 1 Then
-                    RST.Close()
-                End If
+            If RST IsNot Nothing AndAlso RST.State = 1 Then
+                RST.Close()
                 RST = Nothing
             End If
 
@@ -95,13 +89,13 @@
                     CAST(ps.price AS NVARCHAR) LIKE ? OR
                     pc.group_name LIKE ? OR
                     ps.status LIKE ? OR
-                    CAST(ps.quantity AS NVARCHAR) LIKE ?"
+                    CAST(ps.quantity AS NVARCHAR) LIKE ? OR
+                    CONVERT(NVARCHAR, ps.expiry_date, 23) LIKE ?"
 
             cmd.CommandType = CommandTypeEnum.adCmdText
 
             Dim paramValue As String = "%" & searchText & "%"
-
-            For i As Integer = 1 To 6
+            For i As Integer = 1 To 7
                 cmd.Parameters.Append(cmd.CreateParameter("param" & i, DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
             Next
 
@@ -140,4 +134,7 @@
         End Try
     End Sub
 
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
 End Class

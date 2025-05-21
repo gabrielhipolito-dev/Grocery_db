@@ -216,6 +216,7 @@ Partial Class Form5
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.YellowGreen
         ClientSize = New Size(800, 450)
         Controls.Add(RbAdmin)
         Controls.Add(RbUser)

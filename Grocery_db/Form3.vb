@@ -71,7 +71,8 @@ Public Class Form3
             checkCatalog.Execute()
 
             ' 2. Insert into ProductStock
-            Dim STRSQL As String = "INSERT INTO ProductStock (product_number, product_name, price, expiry_date, quantity, status) VALUES (?, ?, ?, ?, ?, ?)"
+            Dim STRSQL As String = "INSERT INTO ProductStock (product_number, product_name, price,
+                                    expiry_date, quantity, status) VALUES (?, ?, ?, ?, ?, ?)"
             Dim cmd As New Command
             cmd.ActiveConnection = CNN
             cmd.CommandText = STRSQL
@@ -148,7 +149,8 @@ Public Class Form3
             Dim rs As New ADODB.Recordset
             Dim checkCmd As New ADODB.Command
             checkCmd.ActiveConnection = CNN
-            checkCmd.CommandText = "SELECT product_name FROM ProductCatalog WHERE LOWER(product_name) = LOWER(?)"
+            checkCmd.CommandText = "SELECT product_name FROM ProductCatalog 
+                                    WHERE LOWER(product_name) = LOWER(?)"
             checkCmd.CommandType = ADODB.CommandTypeEnum.adCmdText
             checkCmd.Parameters.Append(checkCmd.CreateParameter("product_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, prodName))
             rs = checkCmd.Execute()
@@ -177,7 +179,8 @@ Public Class Form3
             ' Update ProductStock
             Dim updateCmd As New ADODB.Command
             updateCmd.ActiveConnection = CNN
-            updateCmd.CommandText = "UPDATE ProductStock SET product_name = ?, price = ?, expiry_date = ?, quantity = ?, status = ? WHERE product_number = ?"
+            updateCmd.CommandText = "UPDATE ProductStock SET product_name = ?, price = ?, expiry_date = ?,
+                                    quantity = ?, status = ? WHERE product_number = ?"
             updateCmd.CommandType = ADODB.CommandTypeEnum.adCmdText
 
             updateCmd.Parameters.Append(updateCmd.CreateParameter("product_name", ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 100, prodName))
@@ -266,44 +269,44 @@ Public Class Form3
         Dim searchText As String = txt_searchbox.Text.Trim()
 
         If String.IsNullOrEmpty(searchText) Then
-            LoadProducts() ' or your method to load all products
+            LoadProducts() ' Reload all products if search box is empty
             Return
         End If
 
-        Dim RST As New Recordset
+        Dim RST As New ADODB.Recordset
         Dim STRSQL As String = "
-        SELECT 
-            ps.product_number, 
-            pc.product_name, 
-            ps.price, 
-            pc.group_name, 
-            ps.expiry_date, 
-            ps.status, 
-            ps.quantity 
-        FROM ProductStock ps
-        INNER JOIN ProductCatalog pc ON ps.product_name = pc.product_name
-        WHERE
-            CAST(ps.product_number AS NVARCHAR) LIKE ? OR
-            pc.product_name LIKE ? OR
-            CAST(ps.price AS NVARCHAR) LIKE ? OR
-            pc.group_name LIKE ? OR
-            ps.status LIKE ? OR
-            CAST(ps.quantity AS NVARCHAR) LIKE ?
-    "
+    SELECT 
+        ps.product_number, 
+        pc.product_name, 
+        ps.price, 
+        pc.group_name, 
+        ps.expiry_date, 
+        ps.status, 
+        ps.quantity 
+    FROM ProductStock ps
+    INNER JOIN ProductCatalog pc ON ps.product_name = pc.product_name
+    WHERE
+        CAST(ps.product_number AS NVARCHAR) LIKE ? OR
+        pc.product_name LIKE ? OR
+        CAST(ps.price AS NVARCHAR) LIKE ? OR
+        pc.group_name LIKE ? OR
+        CONVERT(NVARCHAR, ps.expiry_date, 23) LIKE ? OR
+        ps.status LIKE ? OR
+        CAST(ps.quantity AS NVARCHAR) LIKE ?"
 
         Try
             If CNN.State = 0 Then CNN.Open()
 
-            Dim cmd As New Command
+            Dim cmd As New ADODB.Command
             cmd.ActiveConnection = CNN
             cmd.CommandText = STRSQL
-            cmd.CommandType = CommandTypeEnum.adCmdText
+            cmd.CommandType = ADODB.CommandTypeEnum.adCmdText
 
             Dim paramValue As String = "%" & searchText & "%"
 
-            ' Append 6 parameters for each ?
-            For i As Integer = 1 To 6
-                cmd.Parameters.Append(cmd.CreateParameter("param" & i, DataTypeEnum.adVarChar, ParameterDirectionEnum.adParamInput, 50, paramValue))
+            ' Add 7 parameters including expiry_date filter
+            For i As Integer = 1 To 7
+                cmd.Parameters.Append(cmd.CreateParameter("param" & i, ADODB.DataTypeEnum.adVarChar, ADODB.ParameterDirectionEnum.adParamInput, 50, paramValue))
             Next
 
             RST = cmd.Execute()
@@ -338,8 +341,6 @@ Public Class Form3
             MessageBox.Show("Search failed: " & ex.Message)
         End Try
     End Sub
-
-
 
 
 

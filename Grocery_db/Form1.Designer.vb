@@ -113,11 +113,11 @@ Partial Class Form1
         ' 
         Label4.AutoSize = True
         Label4.BackColor = Color.Transparent
-        Label4.Font = New Font("Georgia", 24F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label4.Font = New Font("Georgia", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label4.ForeColor = Color.DimGray
-        Label4.Location = New Point(466, 87)
+        Label4.Location = New Point(423, 94)
         Label4.Name = "Label4"
-        Label4.Size = New Size(283, 76)
+        Label4.Size = New Size(336, 76)
         Label4.TabIndex = 7
         Label4.Text = "Grocery Inventory " & vbCrLf & "Management"
         Label4.TextAlign = ContentAlignment.TopCenter
@@ -126,8 +126,8 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = SystemColors.InactiveBorder
-        BackgroundImageLayout = ImageLayout.Zoom
+        BackColor = Color.YellowGreen
+        BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(800, 449)
         Controls.Add(Label4)
         Controls.Add(Label3)

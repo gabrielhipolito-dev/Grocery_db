@@ -201,6 +201,7 @@ Partial Class Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.YellowGreen
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(800, 450)
         Controls.Add(RbUser)

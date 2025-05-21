@@ -49,7 +49,7 @@ Partial Class Form3
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.BackColor = SystemColors.Control
+        Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Georgia", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.DimGray
         Label1.Location = New Point(26, 9)
@@ -81,8 +81,9 @@ Partial Class Form3
         ' 
         ' prodgroup_txt
         ' 
+        prodgroup_txt.DropDownStyle = ComboBoxStyle.DropDownList
         prodgroup_txt.FormattingEnabled = True
-        prodgroup_txt.Items.AddRange(New Object() {"Beverage", "Snacks", "Canned Goods", "Cleaning Materials"})
+        prodgroup_txt.Items.AddRange(New Object() {"Baked Goods", "Beverage", "Canned Goods", "Cleaning Materials", "Condiments", "Dairy Products", "Fish", "Frozen Goods", "Fruits & Vegetables", "Kitchenware", "Meat", "Personal Care", "Pet Supplies", "Poultry", "Snacks"})
         prodgroup_txt.Location = New Point(93, 272)
         prodgroup_txt.Name = "prodgroup_txt"
         prodgroup_txt.Size = New Size(174, 23)
@@ -248,6 +249,7 @@ Partial Class Form3
         ' 
         AutoScaleDimensions = New SizeF(8F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.YellowGreen
         ClientSize = New Size(1028, 540)
         Controls.Add(BtnCreateAccount)
         Controls.Add(quantity_txt)
