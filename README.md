@@ -47,11 +47,11 @@ Open SQL Server Management Studio (SSMS) and run the following script to create 
 ```sql
 -- Create database
 CREATE DATABASE INVENTORY;
-GO
+
 
 -- Use the new database
 USE INVENTORY;
-GO
+
 
 -- Create Accounts table
 CREATE TABLE Accounts (
