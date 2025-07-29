@@ -12,7 +12,28 @@ This project is a **Windows Forms Application** built with **VB.NET** and **Micr
 - SSMS (SQL Server Management Studio) for managing the database
 
 ---
+## 📥 Cloning the Project and Connecting to the Database
 
+### 1. 🔽 Clone the Project in Visual Studio
+
+1. Open **Visual Studio**
+2. In the **Repository Location** field, enter the GitHub URL of this project:
+3. Choose a **local path** where you want to store the project.
+4. Click **Clone**
+---
+### 2. 🖥️ Open the Project
+
+After cloning, Visual Studio will automatically open the solution.  
+If not, open the `.sln` file from the folder you selected during cloning.
+---
+### 3. ⚙️ Configure the Database Connection
+
+In your code (usually in a module or main form), locate and update the ADODB connection string:
+
+```vbnet
+Dim connString As String = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;"
+```
+--
 ## 🧠 What This Project Does
 
 - Login system (Admin/User roles)
