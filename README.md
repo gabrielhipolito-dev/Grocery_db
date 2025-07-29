@@ -43,7 +43,7 @@ A Windows Forms application built with **VB.NET**, using **ADODB** for database 
 
 Open SQL Server Management Studio (SSMS) and run the following script to create the `INVENTORY` database and its tables.
 
--- Create database
+# 1. Create database
 ```
 CREATE DATABASE INVENTORY;
 ```
@@ -52,7 +52,7 @@ CREATE DATABASE INVENTORY;
 USE INVENTORY;
 ```
 
--- Create Accounts table
+# 2. Create Accounts table
 ```
 CREATE TABLE Accounts (
     AccountID INT IDENTITY(1,1) PRIMARY KEY,
@@ -62,7 +62,7 @@ CREATE TABLE Accounts (
     Role VARCHAR(20) NOT NULL  -- 'Admin' or 'User'
 );
 ```
--- Create Admins table
+# 3. Create Admins table
 ```
 CREATE TABLE Admins (
     AdminID INT IDENTITY(1,1) PRIMARY KEY,
@@ -72,7 +72,7 @@ CREATE TABLE Admins (
     DateOfBirth DATE NOT NULL
 );
 ```
--- Create Users table
+# 4. Create Users table
 ```
 CREATE TABLE Users (
     UserID INT IDENTITY(1,1) PRIMARY KEY,
@@ -82,14 +82,14 @@ CREATE TABLE Users (
     DateOfBirth DATE NOT NULL
 );
 ```
--- Create ProductCatalog table
+# 5. Create ProductCatalog table
 ```
 CREATE TABLE ProductCatalog (
     product_name VARCHAR(100) PRIMARY KEY,
     group_name VARCHAR(100)
 );
 ```
--- Create ProductStock table
+# 6. Create ProductStock table
 ```
 CREATE TABLE ProductStock (
     product_number INT PRIMARY KEY,
