@@ -101,7 +101,7 @@ CREATE TABLE ProductStock (
     FOREIGN KEY (product_name) REFERENCES ProductCatalog(product_name)
 );
 ```
-
+---
 ## 🧑‍💼 How to Insert a New Admin Account (On a New Database)
 
 If you're starting with a **new database** and want to create a working Admin account, you must insert data into **two tables**:
