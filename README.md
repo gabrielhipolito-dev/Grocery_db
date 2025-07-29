@@ -33,7 +33,7 @@ In your code (usually in a module or main form), locate and update the ADODB con
 ```vbnet
 Dim connString As String = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;"
 ```
---
+---
 ## 🧠 What This Project Does
 
 - Login system (Admin/User roles)
