@@ -12,6 +12,13 @@ This project is a **Windows Forms Application** built with **VB.NET** and **Micr
 - SSMS (SQL Server Management Studio) for managing the database
 
 ---
+## 🧠 What This Project Does
+
+- Login system (Admin/User roles)
+- Account management with separate Admin/User tables
+- Inventory system with product catalog and stock management
+
+---
 ## 📥 Cloning the Project and Connecting to the Database
 
 ### 1. 🔽 Clone the Project in Visual Studio
@@ -34,13 +41,7 @@ In your code (usually in a module or main form), locate and update the ADODB con
 Dim connString As String = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;"
 ```
 ---
-## 🧠 What This Project Does
 
-- Login system (Admin/User roles)
-- Account management with separate Admin/User tables
-- Inventory system with product catalog and stock management
-
----
 ## 💾 Database Connection
 
 The application uses ADODB for connecting to the database. You need to **configure the connection string** to match your machine’s SQL Server setup.
