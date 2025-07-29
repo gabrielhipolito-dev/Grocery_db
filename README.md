@@ -4,6 +4,22 @@ This project is a **Windows Forms Application** built with **VB.NET** and **Micr
 
 ---
 
+
+## ⚙️ Requirements
+
+- Visual Studio with VB.NET support
+- Microsoft SQL Server (any edition)
+- SSMS (SQL Server Management Studio) for managing the database
+
+---
+
+## 🧠 What This Project Does
+
+- Login system (Admin/User roles)
+- Account management with separate Admin/User tables
+- Inventory system with product catalog and stock management
+
+---
 ## 💾 Database Connection
 
 The application uses ADODB for connecting to the database. You need to **configure the connection string** to match your machine’s SQL Server setup.
@@ -19,22 +35,6 @@ Dim connString As String = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalo
 # 🧾 VB.NET Inventory Management System (With Microsoft SQL Server)
 
 A Windows Forms application built with **VB.NET**, using **ADODB** for database access and **Microsoft SQL Server** as the backend. This system handles **user login (Admin/User)** and **inventory management**.
-
----
-
-## ⚙️ Requirements
-
-- Visual Studio with VB.NET support
-- Microsoft SQL Server (any edition)
-- SSMS (SQL Server Management Studio) for managing the database
-
----
-
-## 🧠 What This Project Does
-
-- Login system (Admin/User roles)
-- Account management with separate Admin/User tables
-- Inventory system with product catalog and stock management
 
 ---
 
