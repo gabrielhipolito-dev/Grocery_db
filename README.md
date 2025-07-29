@@ -45,13 +45,13 @@ Open SQL Server Management Studio (SSMS) and run the following script to create 
 ```
 -- Create database
 CREATE DATABASE INVENTORY;
-GO
 
 -- Use the new database
 USE INVENTORY;
-
+```
 
 -- Create Accounts table
+```
 CREATE TABLE Accounts (
     AccountID INT IDENTITY(1,1) PRIMARY KEY,
     Username VARCHAR(50) UNIQUE NOT NULL,
@@ -59,8 +59,9 @@ CREATE TABLE Accounts (
     Password VARCHAR(100) NOT NULL,
     Role VARCHAR(20) NOT NULL  -- 'Admin' or 'User'
 );
-
+```
 -- Create Admins table
+```
 CREATE TABLE Admins (
     AdminID INT IDENTITY(1,1) PRIMARY KEY,
     AccountID INT FOREIGN KEY REFERENCES Accounts(AccountID),
@@ -68,8 +69,9 @@ CREATE TABLE Admins (
     LastName VARCHAR(50) NOT NULL,
     DateOfBirth DATE NOT NULL
 );
-
+```
 -- Create Users table
+```
 CREATE TABLE Users (
     UserID INT IDENTITY(1,1) PRIMARY KEY,
     AccountID INT FOREIGN KEY REFERENCES Accounts(AccountID),
@@ -77,14 +79,16 @@ CREATE TABLE Users (
     LastName VARCHAR(50) NOT NULL,
     DateOfBirth DATE NOT NULL
 );
-
+```
 -- Create ProductCatalog table
+```
 CREATE TABLE ProductCatalog (
     product_name VARCHAR(100) PRIMARY KEY,
     group_name VARCHAR(100)
 );
-
+```
 -- Create ProductStock table
+```
 CREATE TABLE ProductStock (
     product_number INT PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
@@ -94,9 +98,7 @@ CREATE TABLE ProductStock (
     status VARCHAR(20),
     FOREIGN KEY (product_name) REFERENCES ProductCatalog(product_name)
 );
-
 ```
----
 
 ## 🧑‍💼 How to Insert a New Admin Account (On a New Database)
 
