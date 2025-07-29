@@ -40,9 +40,9 @@ A Windows Forms application built with **VB.NET**, using **ADODB** for database 
 ## 🚀 How to Set It Up
 
 ### 1. 🖥️ Create the SQL Server Database
-```
-Open SQL Server Management Studio (SSMS) and run the following script to create the `INVENTORY` database and its tables.
 
+Open SQL Server Management Studio (SSMS) and run the following script to create the `INVENTORY` database and its tables.
+```
 -- Create database
 CREATE DATABASE INVENTORY;
 GO
@@ -103,14 +103,17 @@ CREATE TABLE ProductStock (
 If you're starting with a **new database** and want to create a working Admin account, you must insert data into **two tables**:
 
 -- Step 1: Insert into Accounts
+```
 INSERT INTO Accounts (Username, Email, Password, Role)
 VALUES ('admin1', 'admin@example.com', 'adminpass', 'Admin');
-
+```
 -- Step 2: Capture the AccountID
+```
 DECLARE @adminAccountID INT = SCOPE_IDENTITY();
-
+```
 -- Step 3: Insert into Admins table
+```
 INSERT INTO Admins (AccountID, FirstName, LastName, DateOfBirth)
 VALUES (@adminAccountID, 'Firstname', 'Lastname', '2000-01-01');
-
+```
 
