@@ -95,3 +95,27 @@ CREATE TABLE ProductStock (
     status VARCHAR(20),
     FOREIGN KEY (product_name) REFERENCES ProductCatalog(product_name)
 );
+
+---
+
+## 🧑‍💼 How to Insert a New Admin Account (On a New Database)
+
+If you're starting with a **new database** and want to create a working Admin account, you must insert data into **two tables**:
+
+1. `Accounts` – stores the login info (primary table)
+2. `Admins` – stores profile info and links to `Accounts.AccountID` (foreign key)
+
+Here’s the correct SQL to use:
+
+```sql
+-- Insert into Accounts table first
+INSERT INTO Accounts (Username, Email, Password)
+VALUES ('admin1', 'admin@example.com', 'adminpass');
+
+-- Get the AccountID of the inserted admin
+DECLARE @adminAccountID INT = SCOPE_IDENTITY();
+
+-- Then insert into Admins table using the AccountID
+INSERT INTO Admins (AccountID, FirstName, LastName, DateOfBirth)
+VALUES (@adminAccountID, 'Firstname', 'Lastname', '2000-01-01');
+
