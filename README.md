@@ -67,12 +67,12 @@ A Windows Forms application built with **VB.NET**, using **ADODB** for database 
 Open SQL Server Management Studio (SSMS) and run the following script to create the `INVENTORY` database and its tables.
 
 ## 1. Create Database
-```
+``` SQL
 CREATE DATABASE INVENTORY;
 ```
 
 ## 2. Use the new database
-``` sql
+``` SQL
 USE INVENTORY;
 ```
 
@@ -87,7 +87,7 @@ CREATE TABLE Accounts (
 );
 ```
 ## 4. Create Admins table
-```
+``` SQL
 CREATE TABLE Admins (
     AdminID INT IDENTITY(1,1) PRIMARY KEY,
     AccountID INT FOREIGN KEY REFERENCES Accounts(AccountID),
@@ -97,7 +97,7 @@ CREATE TABLE Admins (
 );
 ```
 ## 5. Create Users table
-```
+``` SQL
 CREATE TABLE Users (
     UserID INT IDENTITY(1,1) PRIMARY KEY,
     AccountID INT FOREIGN KEY REFERENCES Accounts(AccountID),
@@ -105,16 +105,16 @@ CREATE TABLE Users (
     LastName VARCHAR(50) NOT NULL,
     DateOfBirth DATE NOT NULL
 );
-```
+``` 
 ## 6. Create ProductCatalog table
-```
+``` SQL
 CREATE TABLE ProductCatalog (
     product_name VARCHAR(100) PRIMARY KEY,
     group_name VARCHAR(100)
 );
-```
+``` 
 ## 7. Create ProductStock table
-```
+``` SQL
 CREATE TABLE ProductStock (
     product_number INT PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
@@ -131,16 +131,16 @@ CREATE TABLE ProductStock (
 If you're starting with a **new database** and want to create a working Admin account, you must insert data into **two tables**:
 
 ## Step 1: Insert into Accounts
-```
+``` SQL
 INSERT INTO Accounts (Username, Email, Password, Role)
 VALUES ('admin1', 'admin@example.com', 'adminpass', 'Admin');
 ```
 ## Step 2: Capture the AccountID
-```
+``` SQL
 DECLARE @adminAccountID INT = SCOPE_IDENTITY();
 ```
 ## Step 3: Insert into Admins table
-```
+``` SQL
 INSERT INTO Admins (AccountID, FirstName, LastName, DateOfBirth)
 VALUES (@adminAccountID, 'Firstname', 'Lastname', '2000-01-01');
 ```
