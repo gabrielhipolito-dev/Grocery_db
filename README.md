@@ -11,8 +11,9 @@ The application uses ADODB for connecting to the database. You need to **configu
 ### ⚠️ Edit Your Connection String
 
 Open your VB.NET code and locate this line:
-
+```
 Dim connString As String = "Provider=SQLOLEDB;Data Source=GABRIEL;Initial Catalog=INVENTORY;Integrated Security=SSPI;"
+```
 -------------------------------------------------------
 
 # 🧾 VB.NET Inventory Management System (With Microsoft SQL Server)
