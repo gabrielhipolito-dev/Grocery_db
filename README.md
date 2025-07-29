@@ -43,16 +43,17 @@ A Windows Forms application built with **VB.NET**, using **ADODB** for database 
 
 Open SQL Server Management Studio (SSMS) and run the following script to create the `INVENTORY` database and its tables.
 
-## 1. Create database
+## 1. Create Database
 ```
 CREATE DATABASE INVENTORY;
 ```
+
+## 2. Use the new database
 ```
--- Use the new database
 USE INVENTORY;
 ```
 
-## 2. Create Accounts table
+## 3. Create Accounts table
 ```
 CREATE TABLE Accounts (
     AccountID INT IDENTITY(1,1) PRIMARY KEY,
@@ -62,7 +63,7 @@ CREATE TABLE Accounts (
     Role VARCHAR(20) NOT NULL  -- 'Admin' or 'User'
 );
 ```
-## 3. Create Admins table
+## 4. Create Admins table
 ```
 CREATE TABLE Admins (
     AdminID INT IDENTITY(1,1) PRIMARY KEY,
@@ -72,7 +73,7 @@ CREATE TABLE Admins (
     DateOfBirth DATE NOT NULL
 );
 ```
-## 4. Create Users table
+## 5. Create Users table
 ```
 CREATE TABLE Users (
     UserID INT IDENTITY(1,1) PRIMARY KEY,
@@ -82,14 +83,14 @@ CREATE TABLE Users (
     DateOfBirth DATE NOT NULL
 );
 ```
-## 5. Create ProductCatalog table
+## 6. Create ProductCatalog table
 ```
 CREATE TABLE ProductCatalog (
     product_name VARCHAR(100) PRIMARY KEY,
     group_name VARCHAR(100)
 );
 ```
-## 6. Create ProductStock table
+## 7. Create ProductStock table
 ```
 CREATE TABLE ProductStock (
     product_number INT PRIMARY KEY,
@@ -106,16 +107,16 @@ CREATE TABLE ProductStock (
 
 If you're starting with a **new database** and want to create a working Admin account, you must insert data into **two tables**:
 
--- Step 1: Insert into Accounts
+## Step 1: Insert into Accounts
 ```
 INSERT INTO Accounts (Username, Email, Password, Role)
 VALUES ('admin1', 'admin@example.com', 'adminpass', 'Admin');
 ```
--- Step 2: Capture the AccountID
+## Step 2: Capture the AccountID
 ```
 DECLARE @adminAccountID INT = SCOPE_IDENTITY();
 ```
--- Step 3: Insert into Admins table
+## Step 3: Insert into Admins table
 ```
 INSERT INTO Admins (AccountID, FirstName, LastName, DateOfBirth)
 VALUES (@adminAccountID, 'Firstname', 'Lastname', '2000-01-01');
