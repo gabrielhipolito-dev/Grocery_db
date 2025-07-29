@@ -40,7 +40,7 @@ A Windows Forms application built with **VB.NET**, using **ADODB** for database 
 ## 🚀 How to Set It Up
 
 ### 1. 🖥️ Create the SQL Server Database
-
+```
 Open SQL Server Management Studio (SSMS) and run the following script to create the `INVENTORY` database and its tables.
 
 -- Create database
@@ -95,7 +95,7 @@ CREATE TABLE ProductStock (
     FOREIGN KEY (product_name) REFERENCES ProductCatalog(product_name)
 );
 
-
+```
 ---
 
 ## 🧑‍💼 How to Insert a New Admin Account (On a New Database)
